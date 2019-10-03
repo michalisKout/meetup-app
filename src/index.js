@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './app/App';
 
-export default function Welcome() {
-  return <h1>Hello World from React boilerplate</h1>;
-}
-
-ReactDOM.render(<Welcome />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('app'));
