@@ -1,3 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import withErrorBoundary from './hoc/ErrorBoundary';
 
-export default () => <h1>Hello World</h1>;
+const App = () => <h1>Hello World</h1>;
+export default withErrorBoundary(App);

@@ -20,6 +20,12 @@
                 "code": 100
             }
         ],
+        "class-methods-use-this": [
+            "off"
+        ],
+        "react/jsx-props-no-spreading": [
+            "off"
+        ],
         "prefer-promise-reject-errors": [
             "off"
         ],
