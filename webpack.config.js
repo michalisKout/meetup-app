@@ -9,7 +9,7 @@ const DEFAULT_ENTRY = {
   HTML_PATH: './src/index.html',
   JS_PATH: './src/index.js',
 };
-const PRODUCTION_DIR = 'dist';
+const PRODUCTION_DIR = 'dist/';
 
 module.exports = {
   entry: DEFAULT_ENTRY.JS_PATH,
