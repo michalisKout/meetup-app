@@ -6,8 +6,9 @@ This is an assignment for creating a meetup-like web app for trivago.
 
 > **Stack Tech (Core)**:
 
-     - webpack
+     - webpack 4.41
      - React 16.10.*
+     - node-sass 4.12.*
      - eslint 6.5.*
      - prettier 1.18.*
      - husky 3.0.* and lint-staged 9.4.* for pre-commit hooking.
