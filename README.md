@@ -22,6 +22,10 @@ This is an assignment for creating a meetup-like web app for trivago.
     - Container/Presentational pattern is used for the react part.
     - 7-1 design pattern is used for stylesheets.
 
+> **Delivery Process**
+
+    - Trello board (https://trello.com/b/Vd9rnbZM/trivago-challenge)
+
 _Assigment Notes_:
 
 - Clean Code principles applied across the codebase.
