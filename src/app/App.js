@@ -1,5 +1,15 @@
 import React from 'react';
-import withErrorBoundary from './hoc/ErrorBoundary';
+import TestComponent from './components/presentational/TestComponent';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
-const App = () => <h1>Hello World</h1>;
-export default withErrorBoundary(App);
+const App = () => {
+  return (
+    <>
+      <h1>Hello World</h1>
+      <ErrorBoundary>
+        <TestComponent />
+      </ErrorBoundary>
+    </>
+  );
+};
+export default App;
