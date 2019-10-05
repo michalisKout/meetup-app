@@ -24,7 +24,7 @@ This is an assignment for creating a meetup-like web app for trivago.
 
 > **Delivery Process**
 
-    - Trello board (https://trello.com/b/Vd9rnbZM/trivago-challenge)
+    - Trello board [Link to Board](https://trello.com/b/Vd9rnbZM/trivago-challenge)
 
 _Assigment Notes_:
 
