@@ -3,7 +3,11 @@
         [
             "@babel/preset-env",
             {
-                "useBuiltIns": "usage"
+                "useBuiltIns": "usage",
+                "targets": {
+                    "node": "10.15"
+                },
+                "corejs": "2"
             }
         ],
         "@babel/preset-react"

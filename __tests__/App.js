@@ -12,7 +12,6 @@ describe('App component', () => {
 
   it('should contain h1 elemnt', () => {
     const component = shallow(<App />);
-
     component.containsMatchingElement('h1');
   });
 });
