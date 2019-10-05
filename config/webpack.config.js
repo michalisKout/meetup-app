@@ -10,8 +10,8 @@ const DEFAULT_ENTRY = {
   JS_PATH: './src/index.js',
 };
 const PRODUCTION_DIR = 'dist/';
-
-const isOnDevMode = process.env.NODE_ENV === 'development';
+const DEVELOPMENT_MODE = 'development';
+const isOnDevMode = process.env.NODE_ENV === DEVELOPMENT_MODE;
 
 module.exports = {
   entry: DEFAULT_ENTRY.JS_PATH,
