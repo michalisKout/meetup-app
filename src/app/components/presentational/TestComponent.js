@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function TestComponent() {
-  return <div>hello this is real!</div>;
+  return <div className="bg-red">hello this is real!</div>;
 }

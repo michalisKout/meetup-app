@@ -11,6 +11,8 @@ const DEFAULT_ENTRY = {
 };
 const PRODUCTION_DIR = 'dist/';
 
+const isOnDevMode = process.env.NODE_ENV === 'development';
+
 module.exports = {
   entry: DEFAULT_ENTRY.JS_PATH,
   mode: 'production',
@@ -42,19 +44,52 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.module\.s(a|c)ss$/,
+        loader: [
+          isOnDevMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: isOnDevMode,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isOnDevMode,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        loader: [
+          isOnDevMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isOnDevMode,
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.scss'],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@components': path.resolve(__dirname, 'src/components'),
     },
   },
   plugins: [
     new HtmlWebpackPlugin({ template: DEFAULT_ENTRY.HTML_PATH }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-      chunkFilename: 'css/[id].css',
+      filename: isOnDevMode ? 'css/[name].css' : '[name].[contenthash].css',
+      chunkFilename: isOnDevMode ? 'css/[id].css' : 'css/[id].[contenthash].css',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['css/*.*', 'js/*.*', 'fonts/*.*', 'images/*.*'],
