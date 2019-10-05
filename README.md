@@ -26,3 +26,4 @@ _Assigment Notes_:
 - All dependencies have been set to bugfix versions updates only to keep the consistency of workflow across all dependencies.
 - I am not confident in using typescript's features because I have not studied them enough yet. I used prop-types dependency instead.
 - I have not used react-app boilerplate. The webpack, jest and eslint configurations are customized by me. This way the app is **lightweight**, more **flexible** on handling error cases and more **scalable**.
+- There are no unit tests for the api because we already using a mocked api with static data.
