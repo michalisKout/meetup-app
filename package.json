@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --config ./config/webpack.config.js --open --mode development",
     "build": "webpack --config ./config/webpack.config.js --mode production",
     "test": "jest",
-    "fake:api": "./node_modules/.bin/json-server --watch FAKE_API/resources.json --port 3000"
+    "mock:api": "./node_modules/.bin/json-server --watch __MOCK_API__/api.json --port 3000"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/michalisKout/meetup-app#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "husky": "~3.0.8",
     "json-server": "~0.15.1",
     "lint-staged": "~9.4.1",
@@ -38,6 +39,7 @@
     "babel-eslint": "~10.0.3",
     "babel-jest": "~24.9.0",
     "babel-loader": "~8.0.6",
+    "babel-polyfill": "^6.26.0",
     "clean-webpack-plugin": "~3.0.0",
     "css-loader": "^3.2.0",
     "enzyme": "~3.10.0",

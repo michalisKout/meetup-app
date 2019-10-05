@@ -86,7 +86,7 @@ module.exports = {
     },
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: DEFAULT_ENTRY.HTML_PATH }),
+    new HtmlWebpackPlugin({ template: DEFAULT_ENTRY.HTML_PATH, chunksSortMode: 'dependency' }),
     new MiniCssExtractPlugin({
       filename: isOnDevMode ? 'css/[name].css' : '[name].[contenthash].css',
       chunkFilename: isOnDevMode ? 'css/[id].css' : 'css/[id].[contenthash].css',

@@ -1,5 +1,5 @@
 {
-  "users": [
+  "cities": [
     {
       "id": 1,
       "firstName": "Bill",
@@ -19,7 +19,7 @@
       "email": "jeff@amazon.com"
     }
   ],
-  "companies": [
+  "events": [
     {
       "id": 1,
       "name": "Microsoft"
