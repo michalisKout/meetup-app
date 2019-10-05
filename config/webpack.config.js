@@ -9,20 +9,21 @@ const DEFAULT_ENTRY = {
   HTML_PATH: './src/index.html',
   JS_PATH: './src/index.js',
 };
-const PRODUCTION_DIR = 'dist/';
+const PRODUCTION_DIR = '../dist';
 const DEVELOPMENT_MODE = 'development';
 const isOnDevMode = process.env.NODE_ENV === DEVELOPMENT_MODE;
 
 module.exports = {
   entry: DEFAULT_ENTRY.JS_PATH,
-  mode: 'production',
   output: {
     path: path.resolve(__dirname, PRODUCTION_DIR),
     publicPath: '/',
     filename: 'js/[name].bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname, './'),
+    contentBase: path.join(__dirname, PRODUCTION_DIR),
+    compress: isOnDevMode,
+    hot: true,
   },
   devtool: 'inline-source-map',
   performance: { hints: false },
@@ -86,13 +87,11 @@ module.exports = {
     },
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: DEFAULT_ENTRY.HTML_PATH, chunksSortMode: 'dependency' }),
     new MiniCssExtractPlugin({
-      filename: isOnDevMode ? 'css/[name].css' : '[name].[contenthash].css',
+      filename: isOnDevMode ? 'css/[name].css' : 'css/[name].[contenthash].css',
       chunkFilename: isOnDevMode ? 'css/[id].css' : 'css/[id].[contenthash].css',
-    }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['css/*.*', 'js/*.*', 'fonts/*.*', 'images/*.*'],
     }),
   ],
 };
