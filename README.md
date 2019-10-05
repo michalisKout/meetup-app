@@ -6,6 +6,7 @@ This is an assignment for creating a meetup-like web app for trivago.
 
 > **Stack Tech (Core)**:
 
+     - node version ===> 10.15.3 // npm ===> 6.4.1
      - webpack 4.41 .
      - React 16.10.* .
      - node-sass 4.12.* .
