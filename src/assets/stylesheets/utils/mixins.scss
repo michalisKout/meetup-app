@@ -1,0 +1,64 @@
+@mixin font-config($size: 1rem, $weight: 400, $height: 1) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $height;
+}
+
+@mixin flex-config-container(
+  $direction: row,
+  $wrap: nowrap,
+  $justify: flex-start,
+  $align-items: center,
+  $align-content: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align-items;
+  align-content: $align-content;
+}
+
+@mixin flex-config-item($order: 0, $align-self: auto, $grow: 0, $shrink: 1, $basis: auto) {
+  flex: $grow $shrink $basis;
+  order: $order;
+  align-self: $align-self;
+}
+
+@mixin position-config($position-type, $bottom: null, $top: null, $right: null, $left: null) {
+  position: $position-type;
+  bottom: $bottom;
+  top: $top;
+  right: $right;
+  left: $left;
+}
+
+@function translate-media-condition($c) {
+  $condMap: (
+    'screen': 'only screen',
+    'print': 'only print',
+    'retina':
+      '(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 120dpi)',
+    '>mobile': '(min-width: #{$mobile + 1})',
+    '<mobile': '(max-width: #{$mobile})',
+    '>tablet': '(min-width: #{$tablet + 1})',
+    '<tablet': '(max-width: #{$tablet})',
+    '>desktop': '(min-width: #{$desktop + 1})',
+    '<desktop': '(max-width: #{$desktop})',
+  );
+  @return map-get($condMap, $c);
+}
+
+@mixin media($args...) {
+  $query: '';
+  @each $arg in $args {
+    $op: '';
+    @if ($query != '') {
+      $op: ' and ';
+    }
+    $query: $query + $op + translate-media-condition($arg);
+  }
+  @media #{$query} {
+    @content;
+  }
+}

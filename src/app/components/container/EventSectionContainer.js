@@ -8,6 +8,7 @@ export default function EventSectionContainer() {
   function eventsHandler(data) {
     setEvents(data);
   }
+
   useEffect(() => {
     async function eventsPolling() {
       await getAllEvents(eventsHandler);

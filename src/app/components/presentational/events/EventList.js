@@ -7,7 +7,7 @@ const EventList = ({ events }) => {
     const key = `key_${event.id}`;
     return <Event key={key} event={event} />;
   });
-  return eventsCollection;
+  return <div className="event-list">{eventsCollection}</div>;
 };
 
 EventList.prototype = {

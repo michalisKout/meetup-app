@@ -1,0 +1,24 @@
+.event {
+  background: #fff;
+  padding: 1rem;
+  border-bottom: 1px solid $light-grey;
+
+  @include flex-config-container($justify: space-between);
+
+  &__time {
+    @include flex-config-item();
+  }
+  &__info {
+    padding: 0 2rem 0 2rem;
+    @include flex-config-item($order: 1, $grow: 1, $basis: 50%);
+  }
+  &__sign-up {
+    @include flex-config-item($order: 2);
+  }
+  &__title {
+    @include font-config($size: 1.1rem, $weight: 500);
+    &--free {
+      color: $green;
+    }
+  }
+}

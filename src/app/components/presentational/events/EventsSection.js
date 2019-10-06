@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventList from './EventList';
-import Title from '../common/Title';
 
 const EventsSection = ({ events }) => {
   return (
-    <>
-      <Title />
+    <section className="wrapper">
+      <h2>Tuseday 28th June</h2>
       <EventList events={events} />
-    </>
+    </section>
   );
 };
 

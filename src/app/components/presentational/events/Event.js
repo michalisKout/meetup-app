@@ -1,14 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Title from '../common/Title';
 
 const Event = ({ event }) => {
-  const { id, isFree, name, city, startDate, endDate } = event;
+  const { isFree, name, city } = event;
   return (
     <>
-      <div className="event">this is an meetup event </div>
-      <div>
-        {`id: ${id}, isFree: ${isFree}, name: ${name}, city: ${city}, start: ${startDate},
-         end: ${endDate}`}
+      <div className="event">
+        <div className="event__time">18:00</div>
+        <div className="event__info">
+          <Title text={name} isFree={isFree} />
+          <div>{` city name ${city}`}</div>
+        </div>
+        <div className="event__sign-up">
+          <button type="button" className="btn btn-blue">
+            sing up
+          </button>
+        </div>
       </div>
     </>
   );
@@ -25,3 +33,8 @@ Event.propTypes = {
   }).isRequired,
 };
 export default Event;
+
+/* <div>
+{`id: ${id}, isFree: ${isFree}, name: ${name}, city: ${city}, start: ${startDate},
+ end: ${endDate}`}
+</div> */

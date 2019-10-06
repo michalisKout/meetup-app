@@ -1,0 +1,13 @@
+.btn {
+  @include font-config($size: 1.1rem, $weight: 700);
+  padding: 0.5rem 1rem;
+  color: $secondary-text-black;
+  background-color: $deep-blue;
+  border: 2px solid $light-blue;
+  border-radius: 4px;
+  transition: all 0.5s;
+  &:hover {
+    background-color: $secondary-text-black;
+    color: $deep-blue;
+  }
+}

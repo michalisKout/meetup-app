@@ -1,5 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function Title() {
-  return <div>Date Title</div>;
-}
+const Title = ({ text, isFree }) => {
+  return (
+    <div className="event__title">
+      {text}
+      <span className="event__title--free">{isFree ? ' FREE!!!' : null}</span>
+    </div>
+  );
+};
+
+Title.prototype = {
+  text: PropTypes.string.isRequired,
+};
+export default Title;
