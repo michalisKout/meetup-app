@@ -1,5 +1,5 @@
 import React from 'react';
-import TestComponent from './components/presentational/TestComponent';
+import EventSectionContainer from './components/container/EventSectionContainer';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 const App = () => {
@@ -7,7 +7,7 @@ const App = () => {
     <>
       <h1>Hello World</h1>
       <ErrorBoundary>
-        <TestComponent />
+        <EventSectionContainer />
       </ErrorBoundary>
     </>
   );

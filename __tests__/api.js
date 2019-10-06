@@ -9,3 +9,12 @@ describe('axios', () => {
     expect(data).toBeDefined();
   });
 });
+
+// WORKAROUND TO TRIGGER USEEFFECT HOOK
+// const Comp = () => {
+//   useEffect(() => console.log('effect'));
+//   return null;
+// }
+
+// const tree = renderer.create(<Comp />); // nothing logged
+// tree.update(); // console.log => 'effect'

@@ -5,10 +5,8 @@ Array [
   <h1>
     Hello World
   </h1>,
-  <div
-    className="bg-red"
-  >
-    hello this is real!
+  <div>
+    Date Title
   </div>,
 ]
 `;
