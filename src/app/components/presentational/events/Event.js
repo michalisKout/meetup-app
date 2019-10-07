@@ -17,7 +17,7 @@ const Event = ({ event }) => {
       getCityById(city, setCityData);
     }
     updateCityData();
-  });
+  }, cityData);
 
   const eventStartTime = getTimeFromDate(startDate);
   const cityName = cityData && cityData.name;
