@@ -11,7 +11,8 @@ const Title = ({ text, isFree }) => {
   );
 };
 
-Title.prototype = {
+Title.propTypes = {
   text: PropTypes.string.isRequired,
+  isFree: PropTypes.bool.isRequired,
 };
 export default Title;

@@ -10,8 +10,19 @@ const EventList = ({ events }) => {
   return <div className="event-list">{eventsCollection}</div>;
 };
 
-EventList.prototype = {
-  events: PropTypes.array.isRequired,
+EventList.propTypes = {
+  events: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        isFree: PropTypes.bool.isRequired,
+        name: PropTypes.string.isRequired,
+        city: PropTypes.number.isRequired,
+        startDate: PropTypes.string.isRequired,
+        endDate: PropTypes.string.isRequired,
+      }),
+    ),
+  ).isRequired,
 };
 
 export default EventList;
