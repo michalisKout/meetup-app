@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import EventSections from '../presentational/events/EventSections';
 import { getEventsByDate } from '../../api/events';
 
+const initEventsPerDay = [];
+
 export default function EventSectionContainer() {
-  const [eventsPerDay, setEventsPerDay] = useState([]);
+  const [eventsPerDay, setEventsPerDay] = useState(initEventsPerDay);
 
   function eventsPerDayHandler(data) {
     setEventsPerDay(data);
@@ -18,3 +21,7 @@ export default function EventSectionContainer() {
 
   return <EventSections eventsPerDay={eventsPerDay} />;
 }
+
+EventSectionContainer.prototype = {
+  eventsPerDay: PropTypes.array.isRequired,
+};

@@ -4,19 +4,24 @@
   border-bottom: 1px solid $light-grey;
 
   @include flex-config-container($justify: space-between);
-
+  @include font-config($size: 1.1rem, $weight: 500);
   &__time {
-    @include flex-config-item();
+    @include flex-config-item($align-self: baseline);
   }
   &__info {
     padding: 0 2rem 0 2rem;
     @include flex-config-item($order: 1, $grow: 1, $basis: 50%);
+
+    &__city-name {
+      @include font-config($size: 0.9rem, $weight: 500);
+      color: $grey;
+      margin-top: 0.5rem;
+    }
   }
   &__sign-up {
     @include flex-config-item($order: 2);
   }
   &__title {
-    @include font-config($size: 1.1rem, $weight: 500);
     &--free {
       color: $green;
     }

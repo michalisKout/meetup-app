@@ -15,4 +15,13 @@ export const groupByDateOption = data => {
   return groupedResults;
 };
 
+export const getDatesDiff = (dateStart, dateEnd) => {
+  const convertedStartDate = moment(dateStart);
+  const convertedEndDate = moment(dateEnd);
+  const durationInHours = moment.duration(convertedEndDate.diff(convertedStartDate)).asHours();
+  return Math.round(durationInHours);
+};
+
+export const getTimeFromDate = date => moment(date).format('HH.mm');
+
 export const getDate = date => moment(date).format('dddd Do MMMM');
