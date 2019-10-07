@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Event Component should match snapshot when title does not include free label 1`] = `
+<div
+  className="event__title"
+>
+  testText
+  <span
+    className="event__title--free"
+  />
+</div>
+`;
+
+exports[`Event Component should match snapshot when title includes free label 1`] = `
+<div
+  className="event__title"
+>
+  testText
+  <span
+    className="event__title--free"
+  >
+     FREE!!!
+  </span>
+</div>
+`;

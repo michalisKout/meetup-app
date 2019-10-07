@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ErrorBoundary from '../src/app/ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../../src/app/ErrorBoundary/ErrorBoundary';
 
 const DummyComponentWithError = () => {
   return <div>test Component</div>;
