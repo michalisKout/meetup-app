@@ -1,0 +1,38 @@
+.app-header {
+  @include position-config($position-type: fixed, $top: 0, $left: 0);
+  background: white;
+  width: 100vw;
+  border: 2px solid $blue-grey;
+
+  nav.app-nav {
+    display: inline-block;
+    ul {
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+        padding: 2rem;
+        a {
+          @include font-config($size: 1.2rem, $weight: 400);
+          color: $primary-text-black;
+          text-decoration: none;
+          transition: all 0.2s;
+          &:hover {
+            color: $deep-blue;
+          }
+        }
+      }
+    }
+  }
+  &__logo {
+    display: inline-block;
+    padding: 2rem 10% 2rem 10%;
+    cursor: default;
+    &--small {
+      @include font-config($size: 1.2rem, $weight: 400);
+    }
+    &--large {
+      @include font-config($size: 2.5rem, $weight: 500);
+    }
+  }
+}
