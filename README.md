@@ -24,6 +24,8 @@ This is an assignment for creating a meetup-like web app for trivago.
 
 > **Delivery Process - Trello board [Link](https://trello.com/b/Vd9rnbZM/trivago-challenge)**
 
+> **CI/CD Site Deploy - [Link](https://happy-visvesvaraya-d5d3bd.netlify.com)**
+
 _Assigment Notes_:
 
 - Clean Code principles applied across the codebase.

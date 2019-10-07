@@ -1,12 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App component should have a snapshot 1`] = `
-Array [
-  <h1>
-    Hello World
-  </h1>,
-  <div>
-    Date Title
-  </div>,
-]
-`;
+exports[`App component should have a snapshot 1`] = `null`;

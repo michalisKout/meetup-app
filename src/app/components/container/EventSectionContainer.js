@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import EventsSection from '../presentational/events/EventsSection';
-import { getAllEvents } from '../../api/events';
+import EventSections from '../presentational/events/EventSections';
+import { getEventsByDate } from '../../api/events';
 
 export default function EventSectionContainer() {
-  const [events, setEvents] = useState([]);
+  const [eventsPerDay, setEventsPerDay] = useState([]);
 
-  function eventsHandler(data) {
-    setEvents(data);
+  function eventsPerDayHandler(data) {
+    setEventsPerDay(data);
   }
 
   useEffect(() => {
     async function eventsPolling() {
-      await getAllEvents(eventsHandler);
+      await getEventsByDate(eventsPerDayHandler);
     }
     eventsPolling();
   }, []);
 
-  return <EventsSection events={events} />;
+  return <EventSections eventsPerDay={eventsPerDay} />;
 }
