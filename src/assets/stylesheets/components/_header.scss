@@ -4,24 +4,21 @@
   width: 100vw;
   border: 2px solid $blue-grey;
 
-  nav.app-nav {
+  .app-nav {
     display: inline-block;
-    ul {
-      list-style-type: none;
-
-      li {
-        display: inline-block;
-        padding: 2rem;
-        a {
-          @include font-config($size: 1.2rem, $weight: 400);
-          color: $primary-text-black;
-          text-decoration: none;
-          transition: all 0.2s;
-          &:hover {
-            color: $deep-blue;
-          }
-        }
+    padding: 2rem;
+    &__link {
+      padding-left: 2rem;
+      @include font-config($size: 1.2rem, $weight: 400);
+      color: $primary-text-black;
+      text-decoration: none;
+      transition: all 0.2s;
+      &:hover {
+        color: $deep-blue;
       }
+    }
+    .active {
+      color: $deep-blue;
     }
   }
   &__logo {

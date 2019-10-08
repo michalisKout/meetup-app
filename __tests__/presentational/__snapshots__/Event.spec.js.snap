@@ -14,7 +14,9 @@ exports[`Event Component should match snapshot 1`] = `
     className="event__info"
   >
     <div
+      aria-level="3"
       className="event__title"
+      role="heading"
     >
       testEvent
       <span

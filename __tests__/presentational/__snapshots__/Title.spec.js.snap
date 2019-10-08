@@ -2,7 +2,9 @@
 
 exports[`Event Component should match snapshot when title does not include free label 1`] = `
 <div
+  aria-level="3"
   className="event__title"
+  role="heading"
 >
   testText
   <span
@@ -13,7 +15,9 @@ exports[`Event Component should match snapshot when title does not include free 
 
 exports[`Event Component should match snapshot when title includes free label 1`] = `
 <div
+  aria-level="3"
   className="event__title"
+  role="heading"
 >
   testText
   <span

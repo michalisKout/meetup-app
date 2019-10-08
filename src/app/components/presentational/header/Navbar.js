@@ -1,20 +1,26 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { NAVBAR_CONFIG } from '../../../appConfig/appConfig';
 
 const Navbar = () => {
-  return (
-    <nav className="app-nav">
-      <ul>
-        <li>
-          <Link to="/events">All Events</Link>
-        </li>
-        <li>
-          <Link to="/myevents">My Events</Link>
-        </li>
-      </ul>
-    </nav>
-  );
+  const getNavLinks = NAVBAR_CONFIG.map(navLinkConfig => {
+    const { text, linkPath, cssClass } = navLinkConfig;
+    return (
+      <NavLink to={linkPath} className={cssClass} activeClassName="active">
+        {text}
+      </NavLink>
+    );
+  });
+
+  return <nav className="app-nav">{getNavLinks}</nav>;
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default withRouter(props => <Navbar {...props} />);
