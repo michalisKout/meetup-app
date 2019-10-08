@@ -1,4 +1,5 @@
 import { groupByDateOption } from '../utils/date-utils';
+import { constructErrorMessage } from '../utils/api-utils';
 import axios from './axios.instance';
 
 export const getAllEvents = async handler => {
@@ -7,14 +8,14 @@ export const getAllEvents = async handler => {
     const { data } = eventsResponse;
     handler(data);
   } catch (error) {
-    throw new Error(`Server Error ${error}`);
+    throw new Error(constructErrorMessage(error));
   }
 };
 
-export const getEventsByDate = async handler => {
+export const getEventsGroupedByDate = async handler => {
   try {
-    const sortByStartDatequery = '?_sort=startDate&_order=asc';
-    const eventsResponse = await axios.get(`events${sortByStartDatequery}`);
+    const sortByStartDateQuery = '_sort=startDate&_order=asc';
+    const eventsResponse = await axios.get(`events?${sortByStartDateQuery}`);
 
     const { data } = eventsResponse;
 
@@ -23,6 +24,6 @@ export const getEventsByDate = async handler => {
 
     handler(eventsPerDay);
   } catch (error) {
-    throw new Error(`Server Error ${error}`);
+    throw new Error(constructErrorMessage(error));
   }
 };

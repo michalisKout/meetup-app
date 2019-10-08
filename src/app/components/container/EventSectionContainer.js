@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import EventSections from '../presentational/events/EventSections';
-import { getEventsByDate } from '../../api/events';
+import { getEventsGroupedByDate } from '../../api/events';
 
 const initEventsPerDay = [];
 
@@ -13,10 +13,7 @@ export default function EventSectionContainer() {
   }
 
   useEffect(() => {
-    async function eventsPolling() {
-      await getEventsByDate(eventsPerDayHandler);
-    }
-    eventsPolling();
+    getEventsGroupedByDate(eventsPerDayHandler);
   }, []);
 
   return <EventSections eventsPerDay={eventsPerDay} />;
