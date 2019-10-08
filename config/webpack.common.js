@@ -20,6 +20,9 @@ module.exports = {
     filename: 'js/[name].bundle.js',
   },
   performance: { hints: false },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
@@ -81,7 +84,11 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: DEFAULT_ENTRY.HTML_PATH, chunksSortMode: 'dependency' }),
+    new HtmlWebpackPlugin({
+      favicon: 'src/assets/favicon.ico',
+      template: DEFAULT_ENTRY.HTML_PATH,
+      chunksSortMode: 'dependency',
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].bundle.css',
       chunkFilename: 'css/[id].bundle.css',
