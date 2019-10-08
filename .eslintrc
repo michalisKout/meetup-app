@@ -37,6 +37,9 @@
         ],
         "no-return-assign": [
             "off"
+        ],
+        "import/prefer-default-export": [
+            "off"
         ]
     }
 }
