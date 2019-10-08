@@ -5,10 +5,17 @@ import PropTypes from 'prop-types';
 import { NAVBAR_CONFIG } from '../../../appConfig/appConfig';
 
 const Navbar = () => {
-  const getNavLinks = NAVBAR_CONFIG.map(navLinkConfig => {
+  const getNavLinks = NAVBAR_CONFIG.map((navLinkConfig, index) => {
     const { text, linkPath, cssClass } = navLinkConfig;
+    const key = `navitem_${index}`;
     return (
-      <NavLink to={linkPath} className={cssClass} activeClassName="active">
+      <NavLink
+        key={key}
+        tabIndex={index}
+        to={linkPath}
+        className={cssClass}
+        activeClassName="active"
+      >
         {text}
       </NavLink>
     );

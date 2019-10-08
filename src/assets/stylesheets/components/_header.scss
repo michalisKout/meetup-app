@@ -16,6 +16,9 @@
       &:hover {
         color: $deep-blue;
       }
+      &:focus {
+        outline: none;
+      }
     }
     .active {
       color: $deep-blue;
