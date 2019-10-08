@@ -5,6 +5,7 @@ import Button from '../common/Button';
 
 const Event = ({ event, eventStartTime, eventDuration, cityName }) => {
   const { isFree, name } = event;
+  const cityNameAndDuration = `${cityName} - ${`${eventDuration}h`}`;
 
   return (
     <>
@@ -12,7 +13,7 @@ const Event = ({ event, eventStartTime, eventDuration, cityName }) => {
         <div className="event__time">{eventStartTime}</div>
         <div className="event__info">
           <Title text={name} isFree={isFree} />
-          <div className="event__info__city-name">{`${cityName} - ${`${eventDuration}h`}`}</div>
+          <div className="event__info__city-name">{cityNameAndDuration}</div>
         </div>
         <Button />
       </div>
