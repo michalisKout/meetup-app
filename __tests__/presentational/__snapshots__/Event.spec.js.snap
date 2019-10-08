@@ -3,11 +3,12 @@
 exports[`Event Component should match snapshot 1`] = `
 <div
   className="event"
+  role="listitem"
 >
   <div
     className="event__time"
   >
-    18:00
+    
   </div>
   <div
     className="event__info"
@@ -20,8 +21,10 @@ exports[`Event Component should match snapshot 1`] = `
         className="event__title--free"
       />
     </div>
-    <div>
-       city name 1
+    <div
+      className="event__info__city-name"
+    >
+       - 0h
     </div>
   </div>
   <div
@@ -31,7 +34,7 @@ exports[`Event Component should match snapshot 1`] = `
       className="btn btn-blue"
       type="button"
     >
-      sing up
+      Sign up
     </button>
   </div>
 </div>

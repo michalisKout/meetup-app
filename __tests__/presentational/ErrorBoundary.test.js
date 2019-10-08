@@ -13,7 +13,7 @@ describe('ErrorBoundary', () => {
         <DummyComponentWithError />
       </ErrorBoundary>,
     );
-    const error = new Error('hi!');
+    const error = new Error('error');
     wrapper.find(DummyComponentWithError).simulateError(error);
 
     expect(wrapper.state().compomentHasError).toEqual(true);

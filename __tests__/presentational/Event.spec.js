@@ -12,7 +12,10 @@ describe('Event Component', () => {
       startDate: new Date().toDateString(),
       endDate: new Date(1).toDateString(),
     };
-    const component = renderer.create(<Event event={event} />);
+
+    const component = renderer.create(
+      <Event event={event} eventStartTime="" eventDuration={0} cityName="" />,
+    );
 
     const componentTree = component.toJSON();
 

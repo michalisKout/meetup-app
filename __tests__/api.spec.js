@@ -1,3 +1,6 @@
+// import sinon, { before, after } from 'sinon';
+// import { getAllEvents, getEventsByDate } from '../src/app/api/events';
+
 const axios = {
   get: jest.fn(() => Promise.resolve({ data: { name: 'test' } })),
 };
