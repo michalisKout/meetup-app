@@ -1,3 +1,11 @@
 main {
   margin-top: 5rem;
 }
+
+.page-not-found {
+  @include font-config($size: 2rem, $weight: 800);
+  width: 100%;
+  text-align: center;
+  background-color: $soft-grey;
+  color: $orange;
+}
