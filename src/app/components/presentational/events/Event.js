@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Title from '../common/Title';
 import Button from '../common/Button';
 
+const BUTTON_TEXT = 'Sign up';
 const Event = ({ event, eventStartTime, eventDuration, cityName }) => {
   const { isFree, name } = event;
   const cityNameAndDuration = `${cityName} - ${`${eventDuration}h`}`;
@@ -15,7 +16,7 @@ const Event = ({ event, eventStartTime, eventDuration, cityName }) => {
           <Title text={name} isFree={isFree} />
           <div className="event__info__city-name">{cityNameAndDuration}</div>
         </div>
-        <Button />
+        <Button cssClass="event__sign-up" text={BUTTON_TEXT} clickHandler={() => true} />
       </div>
     </>
   );

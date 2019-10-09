@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Button from '../common/Button';
 import { getFreeEvents } from '../../../api/events';
 import { SearchContext, FreeEventsContext } from '../../../utils/hooks-utils';
 
@@ -14,15 +15,11 @@ const EventFilter = () => {
         onChange={event => setSearchValue(event.target.value)}
         placeholder="Search an event..."
       />
-      <button
-        type="button"
-        className="filters-container__free-events btn"
-        onClick={() => getFreeEvents(setFreeEvents)}
-      >
-        Discover
-        <span className="free-text"> Free </span>
-        Events
-      </button>
+      <Button
+        text="Discover Free Events"
+        cssClass="filters-container__free-events btn"
+        clickHandler={() => getFreeEvents(setFreeEvents)}
+      />
     </section>
   );
 };
