@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getEventDuration, getEventStartTimeFromDate } from '../../utils/date-utils';
+import { getEventDuration, getEventStartTimeFromDate, getSignUpDate } from '../../utils/date-utils';
 import { getCityById } from '../../api/cities';
 import EventUI from '../presentational/events/Event';
 
@@ -9,11 +9,20 @@ const initCityData = {
   name: '',
 };
 
-function getEventDisplayInfo(startDate, cityData, endDate) {
+function getSingUpModanText(eventName, date, cityName) {
+  return `You are about to sign up for ${eventName}. 
+              This event takes place the ${date} in ${cityName}`;
+}
+
+function collectEventDisplayInfo(startDate, cityData, endDate) {
   const eventStartTime = getEventStartTimeFromDate(startDate);
+  const singUpDate = getSignUpDate(startDate);
   const cityName = cityData && cityData.name;
   const eventDuration = getEventDuration(startDate, endDate);
+  const singUpModanText = getSingUpModanText(eventStartTime, singUpDate, cityName);
+
   const eventDisplayInfo = {
+    singUpModanText,
     eventStartTime,
     cityName,
     eventDuration,
@@ -31,7 +40,7 @@ const Event = ({ event }) => {
     }
   }, []);
 
-  const eventDisplayInfo = getEventDisplayInfo(startDate, cityData, endDate);
+  const eventDisplayInfo = collectEventDisplayInfo(startDate, cityData, endDate);
 
   return <EventUI event={event} {...eventDisplayInfo} />;
 };

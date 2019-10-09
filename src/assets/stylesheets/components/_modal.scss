@@ -1,0 +1,54 @@
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  &__wrapper {
+    header {
+      position: relative;
+      text-align: center;
+      background-color: $light-grey;
+      padding: 1rem;
+      border-bottom: 4px solid $grey-light;
+    }
+    background-color: $soft-grey;
+    margin: 15% auto;
+    border: 2px solid $grey-light;
+    width: 40%;
+  }
+
+  &__content {
+    padding: 2rem;
+    &__question {
+      margin-top: 2rem;
+    }
+    &__buttons-container {
+      @include flex-config-container($justify: flex-end);
+      margin-top: 10rem;
+      &__button {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  &__close {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: $grey-light;
+    font-size: 28px;
+    font-weight: bold;
+
+    &:hover,
+    :focus {
+      color: $orange;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}

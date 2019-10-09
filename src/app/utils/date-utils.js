@@ -23,5 +23,6 @@ export const getEventDuration = (dateStart, dateEnd) => {
 };
 
 export const getEventStartTimeFromDate = date => moment(date).format('HH.mm');
+export const getSignUpDate = date => moment(date).format('Do MMMM');
 
 export const getDate = date => moment(date).format('dddd Do MMMM');

@@ -20,7 +20,6 @@ const App = () => {
               <Switch>
                 <Route path={['/', '/events']} exact component={EventSectionContainer} />
                 <Route path="/myevents" component={MyEvents} />
-
                 <Route component={NotFound} />
               </Switch>
             </main>
