@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import Title from './Title';
 import Button from './Button';
 
-const TITLE_TEXT = 'Join the event';
-const Modal = ({ text, closeHandler, display }) => {
+const Modal = ({ titleText, text, closeHandler, display, submitHandler }) => {
   const modalElement = (
     <>
       <div className="modal">
         <div className="modal__wrapper">
           <header>
-            <Title text={TITLE_TEXT} isFree={false} />
+            <Title text={titleText} isFree={false} />
             <span
               role="button"
               tabIndex="0"
@@ -28,14 +27,16 @@ const Modal = ({ text, closeHandler, display }) => {
             <div className="modal__content__question">Are you sure?</div>
             <div className="modal__content__buttons-container">
               <Button
+                buttonDisabled={false}
                 text="Cancel"
                 cssClass="modal__content__buttons-container__button"
                 clickHandler={closeHandler}
               />
               <Button
+                buttonDisabled={false}
                 text="Join"
                 cssClass="modal__content__buttons-container__button"
-                clickHandler={() => true}
+                clickHandler={submitHandler}
               />
             </div>
           </div>

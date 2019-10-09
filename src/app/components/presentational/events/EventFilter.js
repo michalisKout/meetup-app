@@ -16,6 +16,7 @@ const EventFilter = () => {
         placeholder="Search an event..."
       />
       <Button
+        buttonDisabled={false}
         text="Discover Free Events"
         cssClass="filters-container__free-events btn"
         clickHandler={() => getFreeEvents(setFreeEvents)}

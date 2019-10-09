@@ -11,4 +11,8 @@
     background-color: $secondary-text-white;
     color: $deep-blue;
   }
+  &:disabled {
+    background-color: $grey-light;
+    color: $secondary-text-white;
+  }
 }

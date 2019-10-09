@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { getEventDuration, getEventStartTimeFromDate, getSignUpDate } from '../../utils/date-utils';
 import { getCityById } from '../../api/cities';
+import { checkEventSubscriptionIsStored } from '../../utils/storage-utils';
+import { useModalDisplay, EventSubscriptionsContext } from '../../utils/hooks-utils';
 import EventUI from '../presentational/events/Event';
 
 const initCityData = {
@@ -30,19 +33,44 @@ function collectEventDisplayInfo(startDate, cityData, endDate) {
   return eventDisplayInfo;
 }
 
+// localStorage.setItem(localStorageKey, value);
+// localStorage.getItem(localStorageKey);
 const Event = ({ event }) => {
   const { city, startDate, endDate } = event;
   const [cityData, setCityData] = useState(initCityData);
+  const [eventIsAlreadySubscribed, setEventIsAlreadySubscribed] = useState(false);
+  const useModal = useModalDisplay();
+  const { eventSubscriptions, setEventSubscriptions } = useContext(EventSubscriptionsContext);
 
   useEffect(() => {
     if (city) {
       getCityById(city, setCityData);
     }
+  }, [city]);
+
+  useEffect(() => {
+    if (eventSubscriptions.length > 0) {
+      const eventSubscribed = eventSubscriptions.some(subEvent => _.isEqual(subEvent, event));
+      setEventIsAlreadySubscribed(eventSubscribed);
+    }
+  }, [eventSubscriptions]);
+
+  useEffect(() => {
+    setEventIsAlreadySubscribed(checkEventSubscriptionIsStored(event));
   }, []);
 
   const eventDisplayInfo = collectEventDisplayInfo(startDate, cityData, endDate);
 
-  return <EventUI event={event} {...eventDisplayInfo} />;
+  return (
+    <EventUI
+      event={event}
+      eventIsAlreadySubscribed={eventIsAlreadySubscribed}
+      eventSubscriptions={eventSubscriptions}
+      setEventSubscriptions={setEventSubscriptions}
+      {...useModal}
+      {...eventDisplayInfo}
+    />
+  );
 };
 
 Event.propTypes = {

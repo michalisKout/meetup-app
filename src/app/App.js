@@ -5,11 +5,17 @@ import MyEvents from './components/presentational/events/MyEvents';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Header from './components/presentational/header/Header';
 import NotFound from './components/presentational/NotFound';
-import { SearchContext, FreeEventsContext } from './utils/hooks-utils';
+import {
+  SearchContext,
+  FreeEventsContext,
+  useEventSubScription,
+  EventSubscriptionsContext,
+} from './utils/hooks-utils';
 
 const App = () => {
   const [searchValue, setSearchValue] = useState('');
   const [freeEvents, setFreeEvents] = useState([]);
+  const [eventSubscriptions, setEventSubscriptions] = useEventSubScription();
   return (
     <Router>
       <ErrorBoundary>
@@ -18,8 +24,12 @@ const App = () => {
             <Header />
             <main>
               <Switch>
-                <Route path={['/', '/events']} exact component={EventSectionContainer} />
-                <Route path="/myevents" component={MyEvents} />
+                <EventSubscriptionsContext.Provider
+                  value={{ eventSubscriptions, setEventSubscriptions }}
+                >
+                  <Route path={['/', '/events']} exact component={EventSectionContainer} />
+                  <Route path="/myevents" component={MyEvents} />
+                </EventSubscriptionsContext.Provider>
                 <Route component={NotFound} />
               </Switch>
             </main>
