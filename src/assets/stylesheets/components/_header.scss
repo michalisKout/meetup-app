@@ -1,17 +1,18 @@
 .app-header {
   @include position-config($position-type: fixed, $top: 0, $left: 0);
   background: white;
-  width: 100vw;
+  width: 100%;
   border: 2px solid $blue-grey;
+  @include flex-config-container($justify: space-between, $wrap: wrap);
 
   .app-nav {
-    display: inline-block;
     padding: 2rem;
     &__link {
       padding-left: 2rem;
       @include font-config($size: 1.2rem, $weight: 400);
       color: $primary-text-black;
       text-decoration: none;
+      white-space: nowrap;
       transition: all 0.2s;
       &:hover {
         color: $deep-blue;
@@ -25,8 +26,7 @@
     }
   }
   &__logo {
-    display: inline-block;
-    padding: 2rem 10% 2rem 10%;
+    padding-left: 3rem;
     cursor: default;
     &--small {
       @include font-config($size: 1.2rem, $weight: 400);
