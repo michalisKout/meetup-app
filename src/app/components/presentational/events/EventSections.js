@@ -17,15 +17,31 @@ const getSectionsPerDay = (eventList, index) => {
   );
 };
 
-const EventSections = ({ eventsPerDay }) => {
+const EventSections = ({ eventsPerDay, value, handleValue }) => {
   const shouldDisplayEventsPerDay = eventsPerDay.length !== 0;
   const sectionsPerDay = shouldDisplayEventsPerDay
     ? eventsPerDay.map(getSectionsPerDay)
     : BACKUP_MESSAGE;
-  return sectionsPerDay;
+
+  return (
+    <>
+      <section className="input-container">
+        <input
+          type="text"
+          className="input-container__event-search"
+          value={value}
+          onChange={handleValue}
+          placeholder="search an event"
+        />
+      </section>
+
+      {sectionsPerDay}
+    </>
+  );
 };
 
-EventSections.prototype = {
+EventSections.propTypes = {
+  handleValue: PropTypes.func.isRequired,
   eventsPerDay: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({
