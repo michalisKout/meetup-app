@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import EventSections from '../../src/app/components/presentational/events/EventSections';
-import EventSectionContainer from '../../src/app/components/container/EventSectionContainer';
+import EventSectionContainer from '../../src/app/components/container/AllEventsContainer';
 
 describe('EventSectionContainer', () => {
   it('should call useEffect and match snapshot', () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
-import EventSectionContainer from './components/container/EventSectionContainer';
-import MyEvents from './components/presentational/events/MyEvents';
+import EventSectionContainer from './components/container/AllEventsContainer';
+import MyEventsContainer from './components/container/MyEventsContainer';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Header from './components/presentational/header/Header';
 import NotFound from './components/presentational/NotFound';
@@ -15,7 +15,7 @@ import {
 const App = () => {
   const [searchValue, setSearchValue] = useState('');
   const [freeEvents, setFreeEvents] = useState([]);
-  const [eventSubscriptions, setEventSubscriptions] = useEventSubScription();
+  const [eventIdSubscriptions, setEventIdSubscriptions] = useEventSubScription();
   return (
     <Router>
       <ErrorBoundary>
@@ -25,10 +25,10 @@ const App = () => {
             <main>
               <Switch>
                 <EventSubscriptionsContext.Provider
-                  value={{ eventSubscriptions, setEventSubscriptions }}
+                  value={{ eventIdSubscriptions, setEventIdSubscriptions }}
                 >
                   <Route path={['/', '/events']} exact component={EventSectionContainer} />
-                  <Route path="/myevents" component={MyEvents} />
+                  <Route path="/myevents" component={MyEventsContainer} />
                 </EventSubscriptionsContext.Provider>
                 <Route component={NotFound} />
               </Switch>

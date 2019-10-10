@@ -14,5 +14,13 @@
   &:disabled {
     background-color: $grey-light;
     color: $secondary-text-white;
+    &:hover {
+      background-color: $deep-blue;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &--disabled {
   }
 }

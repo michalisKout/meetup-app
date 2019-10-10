@@ -20,16 +20,16 @@ export const useModalDisplay = () => {
 export const EventSubscriptionsContext = createContext([]);
 
 export const useEventSubScription = () => {
-  const initSubscriptions = JSON.parse(localStorage.getItem('eventSubscriptionsStorage')) || [];
-  const [eventSubscriptions, setEventSubscriptions] = useState(initSubscriptions);
+  const initSubscriptionsId = JSON.parse(localStorage.getItem('eventIdSubscriptionsStorage')) || [];
+  const [eventIdSubscriptions, setEventIdSubscriptions] = useState(initSubscriptionsId);
 
   function subscribeEventToList() {
-    localStorage.setItem('eventSubscriptionsStorage', JSON.stringify(eventSubscriptions));
+    localStorage.setItem('eventIdSubscriptionsStorage', JSON.stringify(eventIdSubscriptions));
   }
 
   useEffect(() => {
     subscribeEventToList();
-  }, [eventSubscriptions]);
+  }, [eventIdSubscriptions]);
 
-  return [eventSubscriptions, setEventSubscriptions];
+  return [eventIdSubscriptions, setEventIdSubscriptions];
 };

@@ -1,19 +1,5 @@
-import { groupByDateOption } from '../utils/date-utils';
-import { constructErrorMessage } from '../utils/api-utils';
+import { constructErrorMessage, updateStateWithResponseData } from '../utils/api-utils';
 import axios from './axios.instance';
-
-const getGroupedByDateData = data => {
-  const groupedEvents = groupByDateOption(data);
-  const groupedEventsListed = Object.values(groupedEvents);
-
-  return groupedEventsListed;
-};
-
-const updateStateWithResponseData = (eventsResponse, stateHandler) => {
-  const { data } = eventsResponse;
-  const eventsByName = getGroupedByDateData(data);
-  stateHandler(eventsByName);
-};
 
 export const getAllEvents = async stateHandler => {
   try {
@@ -21,39 +7,54 @@ export const getAllEvents = async stateHandler => {
     const { data } = eventsResponse;
     stateHandler(data);
   } catch (error) {
-    throw new Error(constructErrorMessage(error));
+    throw new Error(constructErrorMessage(error, 'getAllEvents'));
   }
 };
 
-export const getEventByName = async (stateHandler, eventName) => {
+const getAPIResponseWithQuery = query => axios.get(`events${query}`);
+
+export const getEventsByName = async (stateHandler, eventName) => {
   try {
-    const searchQueryByName = `?name_like=${eventName}`;
-    const eventsResponse = await axios.get(`events${searchQueryByName}`);
+    const eventsResponse = await getAPIResponseWithQuery(`?name_like=${eventName}`);
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(error));
+    throw new Error(constructErrorMessage(error, 'getEventsByName'));
+  }
+};
+
+export const getEventsById = async (stateHandler, eventIdList) => {
+  try {
+    const bindedQueryParameters = eventIdList
+      .map(eventId => {
+        return `id=${eventId}`;
+      })
+      .join('&');
+
+    const eventsResponse = await getAPIResponseWithQuery(`?${bindedQueryParameters}`);
+
+    updateStateWithResponseData(eventsResponse, stateHandler);
+  } catch (error) {
+    throw new Error(constructErrorMessage(error, 'getEventsById'));
   }
 };
 
 export const getFreeEvents = async stateHandler => {
   try {
-    const searchQueryByFreeEvents = `?isFree=true`;
-    const eventsResponse = await axios.get(`events${searchQueryByFreeEvents}`);
+    const eventsResponse = await getAPIResponseWithQuery(`?isFree=true`);
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(error));
+    throw new Error(constructErrorMessage(error, 'getFreeEvents'));
   }
 };
 
 export const getEventsByDate = async stateHandler => {
   try {
-    const sortByStartDateQuery = '?_sort=startDate&_order=asc';
-    const eventsResponse = await axios.get(`events${sortByStartDateQuery}`);
+    const eventsResponse = await getAPIResponseWithQuery('?_sort=startDate&_order=asc');
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(error));
+    throw new Error(constructErrorMessage(error, 'getEventsByDate'));
   }
 };

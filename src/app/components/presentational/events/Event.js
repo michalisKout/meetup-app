@@ -4,23 +4,29 @@ import Title from '../common/Title';
 import Button from '../common/Button';
 import Modal from '../common/Modal';
 
-const BUTTON_TEXT = 'Sign up';
+const BUTTON = {
+  SIGNUP: 'Sign up',
+  YOU_ARE_IN: "You're in",
+  CANCEL: 'Cancel',
+};
 const TITLE_TEXT = 'Join the event';
 const Event = ({
   event,
   eventStartTime,
   eventDuration,
   cityName,
-  singUpModanText,
+  singUpModalText,
   display,
   toggleModalDisplay,
-  setEventSubscriptions,
-  eventSubscriptions,
+  setEventIdSubscriptions,
+  eventIdSubscriptions,
   eventIsAlreadySubscribed,
 }) => {
-  const { isFree, name } = event;
+  const { id, isFree, name } = event;
+  const { YOU_ARE_IN, SIGNUP } = BUTTON;
   const cityNameAndDuration = `${cityName} - ${`${eventDuration}h`}`;
-  const buttonDisabled = eventIsAlreadySubscribed;
+  const buttonText = eventIsAlreadySubscribed ? YOU_ARE_IN : SIGNUP;
+
   return (
     <>
       <div className="event" role="listitem">
@@ -31,22 +37,23 @@ const Event = ({
         </div>
         <Button
           cssClass="event__sign-up"
-          buttonDisabled={buttonDisabled}
-          text={BUTTON_TEXT}
-          clickHandler={toggleModalDisplay}
+          text={buttonText}
+          clickHandler={!eventIsAlreadySubscribed ? toggleModalDisplay : () => true}
         />
-        <Modal
-          titleText={TITLE_TEXT}
-          text={singUpModanText}
-          display={display}
-          closeHandler={toggleModalDisplay}
-          submitHandler={() => {
-            if (!eventIsAlreadySubscribed) {
-              setEventSubscriptions([...eventSubscriptions, event]);
-              toggleModalDisplay();
-            }
-          }}
-        />
+        {!eventIsAlreadySubscribed ? (
+          <Modal
+            titleText={TITLE_TEXT}
+            text={singUpModalText}
+            display={display}
+            closeHandler={toggleModalDisplay}
+            submitHandler={() => {
+              if (!eventIsAlreadySubscribed) {
+                setEventIdSubscriptions([...eventIdSubscriptions, id]);
+                toggleModalDisplay();
+              }
+            }}
+          />
+        ) : null}
       </div>
     </>
   );
@@ -56,7 +63,7 @@ Event.propTypes = {
   eventIsAlreadySubscribed: PropTypes.bool.isRequired,
   display: PropTypes.bool.isRequired,
   toggleModalDisplay: PropTypes.func.isRequired,
-  singUpModanText: PropTypes.string.isRequired,
+  singUpModalText: PropTypes.string.isRequired,
   eventStartTime: PropTypes.string.isRequired,
   eventDuration: PropTypes.number.isRequired,
   cityName: PropTypes.string.isRequired,
@@ -68,8 +75,8 @@ Event.propTypes = {
     startDate: PropTypes.string,
     endDate: PropTypes.string,
   }).isRequired,
-  setEventSubscriptions: PropTypes.func.isRequired,
-  eventSubscriptions: PropTypes.array.isRequired,
+  setEventIdSubscriptions: PropTypes.func.isRequired,
+  eventIdSubscriptions: PropTypes.array.isRequired,
 };
 
 export default Event;

@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import EventSections from '../presentational/events/EventSections';
-import { getEventsByDate, getEventByName } from '../../api/events';
+import { getEventsByDate, getEventsByName } from '../../api/events';
 import { SearchContext, FreeEventsContext } from '../../utils/hooks-utils';
 
 const initEventsPerDay = [];
 
 export default function EventSectionContainer() {
-  const [eventsPerDay, setEventsPerDay] = useState(initEventsPerDay);
+  const [eventsListData, setEventsPerDay] = useState(initEventsPerDay);
   const { searchValue } = useContext(SearchContext);
   const { freeEvents } = useContext(FreeEventsContext);
 
@@ -21,7 +21,7 @@ export default function EventSectionContainer() {
     const isValidInput = validationRegex.test(eventName);
 
     if (isValidInput) {
-      getEventByName(eventsPerDayHandler, eventName);
+      getEventsByName(eventsPerDayHandler, eventName);
     } else {
       getEventsByDate(eventsPerDayHandler);
     }
@@ -31,9 +31,9 @@ export default function EventSectionContainer() {
     eventsPerDayHandler(freeEvents);
   }, [freeEvents]);
 
-  return <EventSections eventsPerDay={eventsPerDay} />;
+  return <EventSections eventsListData={eventsListData} />;
 }
 
 EventSectionContainer.prototype = {
-  eventsPerDay: PropTypes.array.isRequired,
+  eventsListData: PropTypes.array.isRequired,
 };

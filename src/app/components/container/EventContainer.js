@@ -12,35 +12,13 @@ const initCityData = {
   name: '',
 };
 
-function getSingUpModanText(eventName, date, cityName) {
-  return `You are about to sign up for ${eventName}. 
-              This event takes place the ${date} in ${cityName}`;
-}
-
-function collectEventDisplayInfo(startDate, cityData, endDate) {
-  const eventStartTime = getEventStartTimeFromDate(startDate);
-  const singUpDate = getSignUpDate(startDate);
-  const cityName = cityData && cityData.name;
-  const eventDuration = getEventDuration(startDate, endDate);
-  const singUpModanText = getSingUpModanText(eventStartTime, singUpDate, cityName);
-
-  const eventDisplayInfo = {
-    singUpModanText,
-    eventStartTime,
-    cityName,
-    eventDuration,
-  };
-  return eventDisplayInfo;
-}
-
-// localStorage.setItem(localStorageKey, value);
-// localStorage.getItem(localStorageKey);
 const Event = ({ event }) => {
-  const { city, startDate, endDate } = event;
+  const { id, city, startDate, endDate, name } = event;
+
   const [cityData, setCityData] = useState(initCityData);
   const [eventIsAlreadySubscribed, setEventIsAlreadySubscribed] = useState(false);
   const useModal = useModalDisplay();
-  const { eventSubscriptions, setEventSubscriptions } = useContext(EventSubscriptionsContext);
+  const { eventIdSubscriptions, setEventIdSubscriptions } = useContext(EventSubscriptionsContext);
 
   useEffect(() => {
     if (city) {
@@ -49,15 +27,38 @@ const Event = ({ event }) => {
   }, [city]);
 
   useEffect(() => {
-    if (eventSubscriptions.length > 0) {
-      const eventSubscribed = eventSubscriptions.some(subEvent => _.isEqual(subEvent, event));
-      setEventIsAlreadySubscribed(eventSubscribed);
+    const hasSubscriptionIds = eventIdSubscriptions.length > 0;
+
+    if (hasSubscriptionIds) {
+      const eventIdSubscribed = eventIdSubscriptions.some(subEventId => _.isEqual(subEventId, id));
+      setEventIsAlreadySubscribed(eventIdSubscribed);
     }
-  }, [eventSubscriptions]);
+  }, [eventIdSubscriptions]);
 
   useEffect(() => {
-    setEventIsAlreadySubscribed(checkEventSubscriptionIsStored(event));
+    setEventIsAlreadySubscribed(checkEventSubscriptionIsStored(id));
   }, []);
+
+  const getSingUpModalText = (eventName, date, cityName) => {
+    return `You are about to sign up for ${eventName}. 
+                This event takes place the ${date} in ${cityName}`;
+  };
+
+  const collectEventDisplayInfo = () => {
+    const eventStartTime = getEventStartTimeFromDate(startDate);
+    const singUpDate = getSignUpDate(startDate);
+    const cityName = cityData && cityData.name;
+    const eventDuration = getEventDuration(startDate, endDate);
+    const singUpModalText = getSingUpModalText(name, singUpDate, cityName);
+
+    const eventDisplayInfo = {
+      singUpModalText,
+      eventStartTime,
+      cityName,
+      eventDuration,
+    };
+    return eventDisplayInfo;
+  };
 
   const eventDisplayInfo = collectEventDisplayInfo(startDate, cityData, endDate);
 
@@ -65,8 +66,8 @@ const Event = ({ event }) => {
     <EventUI
       event={event}
       eventIsAlreadySubscribed={eventIsAlreadySubscribed}
-      eventSubscriptions={eventSubscriptions}
-      setEventSubscriptions={setEventSubscriptions}
+      eventIdSubscriptions={eventIdSubscriptions}
+      setEventIdSubscriptions={setEventIdSubscriptions}
       {...useModal}
       {...eventDisplayInfo}
     />

@@ -3,27 +3,27 @@ import PropTypes from 'prop-types';
 import { getDate } from '../../../utils/date-utils';
 import EventList from './EventList';
 
-const getSectionsPerDay = (eventList, index) => {
-  const listHasEvents = eventList.length !== 0;
-  const date = listHasEvents && getDate(eventList[0].startDate);
-  const key = `event-section-${index}`;
-  return (
-    <section key={key} className="event-section" role="list">
-      <h2>{date}</h2>
-      <EventList events={eventList} />
-    </section>
-  );
-};
+const EventSections = ({ eventsListData }) => {
+  const getSectionsPerDay = (eventsList, index) => {
+    const listHasEvents = eventsList.length !== 0;
+    const date = listHasEvents && getDate(eventsList[0].startDate);
+    const key = `event-section-${index}`;
+    return (
+      <section key={key} className="event-section" role="list">
+        <h2>{date}</h2>
+        <EventList events={eventsList} />
+      </section>
+    );
+  };
 
-const EventSections = ({ eventsPerDay }) => {
-  const shouldDisplayEventsPerDay = eventsPerDay.length !== 0;
-  const sectionsPerDay = shouldDisplayEventsPerDay ? eventsPerDay.map(getSectionsPerDay) : null;
+  const shouldDisplayEventsPerDay = eventsListData.length !== 0;
+  const sectionsPerDay = shouldDisplayEventsPerDay ? eventsListData.map(getSectionsPerDay) : null;
 
   return <>{sectionsPerDay}</>;
 };
 
 EventSections.propTypes = {
-  eventsPerDay: PropTypes.arrayOf(
+  eventsListData: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
