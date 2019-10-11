@@ -3,7 +3,7 @@ import Button from '../common/Button';
 import { getFreeEvents } from '../../../api/eventsAPI';
 import { SearchContext, FreeEventsContext } from '../../../utils/customHooks/event-hooks';
 
-const EventFilter = () => {
+const EventFilters = () => {
   const { searchValue, setSearchValue } = useContext(SearchContext);
   const { setFreeEvents } = useContext(FreeEventsContext);
   return (
@@ -25,4 +25,4 @@ const EventFilter = () => {
   );
 };
 
-export default EventFilter;
+export default EventFilters;
