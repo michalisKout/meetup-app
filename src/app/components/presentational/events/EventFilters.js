@@ -7,10 +7,10 @@ const EventFilters = () => {
   const { searchValue, setSearchValue } = useContext(SearchContext);
   const { setFreeEvents } = useContext(FreeEventsContext);
   return (
-    <section className="filters-container">
+    <section className="filters">
       <input
         type="text"
-        className="filters-container__event-search"
+        className="filters__event-search"
         value={searchValue}
         onChange={event => setSearchValue(event.target.value)}
         placeholder="Search an event..."
@@ -18,7 +18,7 @@ const EventFilters = () => {
       <Button
         buttonDisabled={false}
         text="Discover Free Events"
-        cssClass="filters-container__free-events btn"
+        cssClass="filters__free-events btn"
         clickHandler={() => getFreeEvents(setFreeEvents)}
       />
     </section>

@@ -1,4 +1,4 @@
-.filters-container {
+.filters {
   flex: 0.5 1 auto;
   order: 2;
   @include flex-config-container($justify: space-between);

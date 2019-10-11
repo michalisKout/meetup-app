@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 const Logo = ({ smallText, largeText }) => {
   return (
-    <div className="app-header__logo">
-      <span className="app-header__logo--small">{smallText}</span>
-      <span className="app-header__logo--large">{largeText}</span>
+    <div className="topheader__logo">
+      <span className="topheader__logo--small">{smallText}</span>
+      <span className="topheader__logo--large">{largeText}</span>
     </div>
   );
 };

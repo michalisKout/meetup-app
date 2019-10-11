@@ -1,10 +1,10 @@
-.app-header {
+.topheader {
   @include position-config($position-type: fixed, $top: 0, $left: 0);
   background: white;
   width: 100%;
   border: 2px solid $blue-grey;
 
-  .app-nav {
+  .navigation {
     padding: 2rem 20%;
     display: inline-block;
     &__link {

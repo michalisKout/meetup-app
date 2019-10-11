@@ -21,7 +21,7 @@ const Navbar = () => {
     );
   });
 
-  return <nav className="app-nav">{getNavLinks}</nav>;
+  return <nav className="navigation">{getNavLinks}</nav>;
 };
 
 Navbar.propTypes = {
