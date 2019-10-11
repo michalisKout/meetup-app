@@ -1,0 +1,5 @@
+.events {
+  &-wrapper {
+    @include flex-config-container($direction: column, $align-items: flex-start);
+  }
+}
