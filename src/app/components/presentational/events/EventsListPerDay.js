@@ -2,15 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EventContainer from '../../container/EventContainer';
 
-const EventList = ({ events }) => {
+const EventsListPerDay = ({ events }) => {
   const eventsCollection = events.map(event => {
     const key = `key_${event.id}`;
     return <EventContainer key={key} event={event} />;
   });
-  return <div className="event-list">{eventsCollection}</div>;
+  return (
+    <>
+      <div role="listitem">
+        <div className="event-list" role="list">
+          {eventsCollection}
+        </div>
+      </div>
+    </>
+  );
 };
 
-EventList.propTypes = {
+EventsListPerDay.propTypes = {
   events: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -23,4 +31,4 @@ EventList.propTypes = {
   ).isRequired,
 };
 
-export default EventList;
+export default EventsListPerDay;

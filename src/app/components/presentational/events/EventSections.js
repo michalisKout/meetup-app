@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getDate } from '../../../utils/date-utils';
-import EventList from './EventList';
+import EventsListPerDay from './EventsListPerDay';
 
 const EventSections = ({ eventsListData }) => {
   const getSectionsPerDay = (eventsList, index) => {
@@ -13,7 +13,7 @@ const EventSections = ({ eventsListData }) => {
         <header>
           <h2>{date}</h2>
         </header>
-        <EventList events={eventsList} />
+        <EventsListPerDay events={eventsList} />
       </div>
     );
   };
