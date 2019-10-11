@@ -9,10 +9,12 @@ const EventSections = ({ eventsListData }) => {
     const date = listHasEvents && getDate(eventsList[0].startDate);
     const key = `event-section-${index}`;
     return (
-      <section key={key} className="event-section" role="list">
-        <h2>{date}</h2>
+      <div key={key} className="event-section" role="list">
+        <header>
+          <h2>{date}</h2>
+        </header>
         <EventList events={eventsList} />
-      </section>
+      </div>
     );
   };
 
