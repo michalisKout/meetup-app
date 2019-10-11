@@ -1,26 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import EventSections from '../presentational/events/EventSections';
 import { getStoredEventIds } from '../../utils/storage-utils';
-import { getEventsById } from '../../api/events';
-import { EventSubscriptionsContext } from '../../utils/hooks-utils';
+import { getEventsByIdSortedByDate } from '../../api/events';
 
-const MyEvents = ({ location }) => {
+const MyEvents = () => {
   const [eventsSubscriptions, setEventsSubscriptions] = useState([]);
-  const { eventIdSubscriptions } = useContext(EventSubscriptionsContext);
 
   useEffect(() => {
     const storedEventIds = getStoredEventIds();
     const hasStoredEventIds = storedEventIds.length > 0;
 
     if (hasStoredEventIds) {
-      getEventsById(setEventsSubscriptions, storedEventIds);
+      getEventsByIdSortedByDate(setEventsSubscriptions, storedEventIds);
     }
   }, []);
 
-  useEffect(() => {
-    getEventsById(setEventsSubscriptions, eventIdSubscriptions);
-  }, [eventIdSubscriptions]);
-  return <EventSections eventsListData={eventsSubscriptions} location={location} />;
+  return <EventSections eventsListData={eventsSubscriptions} />;
 };
 
 export default MyEvents;

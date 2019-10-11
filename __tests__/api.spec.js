@@ -1,5 +1,5 @@
 // import sinon, { before, after } from 'sinon';
-// import { getAllUnRegisteredEvents, getUnRegisteredEventsByDate } from '../src/app/api/events';
+// import { getAllUnRegisteredEvents, getEventsByDate } from '../src/app/api/events';
 
 const axios = {
   get: jest.fn(() => Promise.resolve({ data: { name: 'test' } })),
