@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { getDate } from '../../../utils/date-utils';
 import EventsListPerDay from './EventsListPerDay';
 
-const EventSections = ({ eventsListData }) => {
-  const getSectionsPerDay = (eventsList, index) => {
+const EventsWrapper = ({ eventsListData }) => {
+  const getEventListPerDay = (eventsList, index) => {
     const listHasEvents = eventsList.length !== 0;
     const date = listHasEvents && getDate(eventsList[0].startDate);
-    const key = `event-section-${index}`;
+    const key = `events-wrapper-${index}`;
     return (
-      <div key={key} className="event-section" role="list">
+      <div key={key} className="events-wrapper" role="list">
         <header>
           <h2>{date}</h2>
         </header>
@@ -19,12 +19,12 @@ const EventSections = ({ eventsListData }) => {
   };
 
   const shouldDisplayEventsPerDay = eventsListData.length !== 0;
-  const sectionsPerDay = shouldDisplayEventsPerDay ? eventsListData.map(getSectionsPerDay) : null;
+  const eventListPerDay = shouldDisplayEventsPerDay ? eventsListData.map(getEventListPerDay) : null;
 
-  return <>{sectionsPerDay}</>;
+  return <section className="events">{eventListPerDay}</section>;
 };
 
-EventSections.propTypes = {
+EventsWrapper.propTypes = {
   eventsListData: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({
@@ -39,4 +39,4 @@ EventSections.propTypes = {
   ).isRequired,
 };
 
-export default EventSections;
+export default EventsWrapper;

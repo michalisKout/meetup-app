@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import EventSections from '../../src/app/components/presentational/events/EventSections';
+import EventsWrapper from '../../src/app/components/presentational/events/EventsWrapper';
 import EventSectionContainer from '../../src/app/components/container/AllEventsContainer';
 
 describe('EventSectionContainer', () => {
@@ -15,7 +15,7 @@ describe('EventSectionContainer', () => {
     };
     const wrapper = mount(<EventSectionContainer event={event} />);
 
-    expect(wrapper.contains(EventSections)).toEqual(true);
+    expect(wrapper.contains(EventsWrapper)).toEqual(true);
     expect(wrapper.html()).toMatchSnapshot();
   });
 });

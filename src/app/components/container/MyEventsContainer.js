@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EventSections from '../presentational/events/EventSections';
+import EventsWrapper from '../presentational/events/EventsWrapper';
 import { getStoredEventIds } from '../../utils/storage-utils';
 import * as EventsAPI from '../../api/eventsAPI';
 
@@ -15,7 +15,7 @@ const MyEvents = () => {
     }
   }, []);
 
-  return <EventSections eventsListData={eventsRegistrations} />;
+  return <EventsWrapper eventsListData={eventsRegistrations} />;
 };
 
 export default MyEvents;

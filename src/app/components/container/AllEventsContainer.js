@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EventSections from '../presentational/events/EventSections';
+import EventsWrapper from '../presentational/events/EventsWrapper';
 import { useEventsListData } from '../../utils/customHooks/event-hooks';
 import EventFilters from '../presentational/events/EventFilters';
 
@@ -10,7 +10,7 @@ export default function EventSectionContainer() {
   return (
     <>
       <EventFilters />
-      <EventSections eventsListData={eventsListData} />
+      <EventsWrapper eventsListData={eventsListData} />
     </>
   );
 }
