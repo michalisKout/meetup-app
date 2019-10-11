@@ -10,7 +10,7 @@ const EventsListPerDay = ({ events }) => {
   return (
     <>
       <div role="listitem">
-        <div className="event-list" role="list">
+        <div className="event-list-perday" role="list">
           {eventsCollection}
         </div>
       </div>
