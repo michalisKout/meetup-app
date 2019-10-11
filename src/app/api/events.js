@@ -1,7 +1,15 @@
 import { constructErrorMessage, updateStateWithResponseData } from '../utils/api-utils';
 import axios from './axios.instance';
 
-const getAPIResponseWithQuery = query => axios.get(`events${query}`);
+const getAPIResponseWithQuery = (query, eventIdsListToExclude = []) => {
+  const bindedExcludeQueryParameters = eventIdsListToExclude
+    .map(eventId => {
+      return `id_ne=${eventId}`;
+    })
+    .join('&');
+
+  return axios.get(`events?${bindedExcludeQueryParameters}&${query}`);
+};
 
 export const getAllEvents = async stateHandler => {
   try {
@@ -15,7 +23,7 @@ export const getAllEvents = async stateHandler => {
 
 export const getEventsByName = async (stateHandler, eventName) => {
   try {
-    const eventsResponse = await getAPIResponseWithQuery(`?name_like=${eventName}`);
+    const eventsResponse = await getAPIResponseWithQuery(`name_like=${eventName}`);
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
@@ -51,13 +59,9 @@ export const getFreeEvents = async stateHandler => {
 
 export const getUnRegisteredEventsByDate = async (stateHandler, eventIdsListToExclude) => {
   try {
-    const bindedExcludeQueryParameters = eventIdsListToExclude
-      .map(eventId => {
-        return `id_ne=${eventId}`;
-      })
-      .join('&');
     const eventsResponse = await getAPIResponseWithQuery(
-      `?${bindedExcludeQueryParameters}&_sort=startDate&_order=asc`,
+      `_sort=startDate&_order=asc`,
+      eventIdsListToExclude,
     );
 
     updateStateWithResponseData(eventsResponse, stateHandler);
