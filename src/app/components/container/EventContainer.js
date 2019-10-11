@@ -60,6 +60,13 @@ const Event = ({ event }) => {
     return eventDisplayInfo;
   };
 
+  const signUpHandler = () => {
+    if (!eventIsAlreadySubscribed) {
+      setEventIdSubscriptions([...eventIdSubscriptions, id]);
+      useModal.toggleModalDisplay();
+    }
+  };
+
   const eventDisplayInfo = collectEventDisplayInfo(startDate, cityData, endDate);
 
   return (
@@ -68,6 +75,7 @@ const Event = ({ event }) => {
       eventIsAlreadySubscribed={eventIsAlreadySubscribed}
       eventIdSubscriptions={eventIdSubscriptions}
       setEventIdSubscriptions={setEventIdSubscriptions}
+      signUpHandler={signUpHandler}
       {...useModal}
       {...eventDisplayInfo}
     />

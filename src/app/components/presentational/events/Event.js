@@ -18,11 +18,10 @@ const Event = ({
   singUpModalText,
   display,
   toggleModalDisplay,
-  setEventIdSubscriptions,
-  eventIdSubscriptions,
   eventIsAlreadySubscribed,
+  signUpHandler,
 }) => {
-  const { id, isFree, name } = event;
+  const { isFree, name } = event;
   const { YOU_ARE_IN, SIGNUP } = BUTTON;
   const cityNameAndDuration = `${cityName} - ${`${eventDuration}h`}`;
   const buttonText = eventIsAlreadySubscribed ? YOU_ARE_IN : SIGNUP;
@@ -46,12 +45,7 @@ const Event = ({
             text={singUpModalText}
             display={display}
             closeHandler={toggleModalDisplay}
-            submitHandler={() => {
-              if (!eventIsAlreadySubscribed) {
-                setEventIdSubscriptions([...eventIdSubscriptions, id]);
-                toggleModalDisplay();
-              }
-            }}
+            submitHandler={signUpHandler}
           />
         ) : null}
       </div>
@@ -60,6 +54,7 @@ const Event = ({
 };
 
 Event.propTypes = {
+  signUpHandler: PropTypes.func.isRequired,
   eventIsAlreadySubscribed: PropTypes.bool.isRequired,
   display: PropTypes.bool.isRequired,
   toggleModalDisplay: PropTypes.func.isRequired,
@@ -75,8 +70,6 @@ Event.propTypes = {
     startDate: PropTypes.string,
     endDate: PropTypes.string,
   }).isRequired,
-  setEventIdSubscriptions: PropTypes.func.isRequired,
-  eventIdSubscriptions: PropTypes.array.isRequired,
 };
 
 export default Event;
