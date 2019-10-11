@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
-const LOCAL_STORAGE_EVENTS_SUBSCRIPTIONS = 'eventIdSubscriptionsStorage';
+const LOCAL_STORAGE_EVENTS_SUBSCRIPTIONS = 'eventIdRegistrationsStorage';
 
 export const getStoredEventIds = () => {
-  const subscribedEventsIds =
+  const registeredEventsIds =
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_EVENTS_SUBSCRIPTIONS)) || [];
 
-  return subscribedEventsIds;
+  return registeredEventsIds;
 };
 
-export const checkEventSubscriptionIsStored = eventId =>
-  getStoredEventIds().some(subscribedEvent => _.isEqual(subscribedEvent, eventId));
+export const checkEventRegistrationIsStored = eventId =>
+  getStoredEventIds().some(registeredEvent => _.isEqual(registeredEvent, eventId));

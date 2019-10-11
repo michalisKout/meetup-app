@@ -1,33 +1,18 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import EventSections from '../presentational/events/EventSections';
-import { getEventsByDate, getEventsByName } from '../../api/events';
-import { SearchContext, FreeEventsContext } from '../../utils/hooks-utils';
-
-const initEventsPerDay = [];
+import { useEventsListData } from '../../utils/customHooks/event-hooks';
+import EventFilter from '../presentational/events/EventFilter';
 
 export default function EventSectionContainer() {
-  const [eventsListData, setEventsListData] = useState(initEventsPerDay);
-  const { searchValue } = useContext(SearchContext);
-  const { freeEvents } = useContext(FreeEventsContext);
+  const [eventsListData] = useEventsListData();
 
-  useEffect(() => {
-    const eventName = searchValue;
-    const validationRegex = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
-    const isValidInput = eventName && validationRegex.test(eventName);
-
-    if (isValidInput) {
-      getEventsByName(setEventsListData, eventName);
-    } else {
-      getEventsByDate(setEventsListData);
-    }
-  }, [searchValue]);
-
-  useEffect(() => {
-    setEventsListData(freeEvents);
-  }, [freeEvents]);
-
-  return <EventSections eventsListData={eventsListData} />;
+  return (
+    <>
+      <EventFilter />
+      <EventSections eventsListData={eventsListData} />
+    </>
+  );
 }
 
 EventSectionContainer.prototype = {

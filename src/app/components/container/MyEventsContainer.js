@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import EventSections from '../presentational/events/EventSections';
 import { getStoredEventIds } from '../../utils/storage-utils';
-import { getEventsByIdSortedByDate } from '../../api/events';
+import * as EventsAPI from '../../api/eventsAPI';
 
 const MyEvents = () => {
-  const [eventsSubscriptions, setEventsSubscriptions] = useState([]);
+  const [eventsRegistrations, setEventsRegistrations] = useState([]);
 
   useEffect(() => {
     const storedEventIds = getStoredEventIds();
     const hasStoredEventIds = storedEventIds.length > 0;
 
     if (hasStoredEventIds) {
-      getEventsByIdSortedByDate(setEventsSubscriptions, storedEventIds);
+      EventsAPI.getEventsByIdSortedByDate(setEventsRegistrations, storedEventIds);
     }
   }, []);
 
-  return <EventSections eventsListData={eventsSubscriptions} />;
+  return <EventSections eventsListData={eventsRegistrations} />;
 };
 
 export default MyEvents;

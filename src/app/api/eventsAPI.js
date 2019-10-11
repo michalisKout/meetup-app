@@ -1,4 +1,5 @@
-import { constructErrorMessage, updateStateWithResponseData } from '../utils/api-utils';
+import { updateStateWithResponseData } from '../utils/api-utils';
+import { constructErrorMessage } from '../utils/error-utils';
 import axios from './axios.instance';
 
 const getAPIResponseWithQuery = query => axios.get(`events${query}`);
@@ -21,7 +22,7 @@ export const getEventsByName = async (stateHandler, eventName) => {
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(error, 'getEventsByName'));
+    throw new Error(constructErrorMessage(error));
   }
 };
 
@@ -39,7 +40,7 @@ export const getEventsByIdSortedByDate = async (stateHandler, eventIdList) => {
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(error, 'getEventsByIdSortedByDate'));
+    throw new Error(constructErrorMessage(error));
   }
 };
 
@@ -49,7 +50,7 @@ export const getFreeEvents = async stateHandler => {
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(error, 'getFreeEvents'));
+    throw new Error(constructErrorMessage(error));
   }
 };
 
@@ -65,6 +66,6 @@ export const getEventsByDate = async stateHandler => {
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(error, 'getEventsByDate'));
+    throw new Error(constructErrorMessage(error));
   }
 };

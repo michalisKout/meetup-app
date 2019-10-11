@@ -1,43 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import { getEventDuration, getEventStartTimeFromDate, getSignUpDate } from '../../utils/date-utils';
-import { getCityById } from '../../api/cities';
-import { checkEventSubscriptionIsStored } from '../../utils/storage-utils';
-import { useModalDisplay, EventSubscriptionsContext } from '../../utils/hooks-utils';
-import EventUI from '../presentational/events/Event';
 
-const initCityData = {
-  id: 0,
-  name: '',
-};
+import {
+  useEventCity,
+  useEventRegistrationCheck,
+  EventRegistrationsContext,
+} from '../../utils/customHooks/event-hooks';
+import { useModalDisplay } from '../../utils/customHooks/toolkit-hooks';
+
+import EventUI from '../presentational/events/Event';
 
 const Event = ({ event }) => {
   const { id, city, startDate, endDate, name } = event;
-
-  const [cityData, setCityData] = useState(initCityData);
-  const [eventIsAlreadySubscribed, setEventIsAlreadySubscribed] = useState(false);
-  const useModal = useModalDisplay();
-  const { eventIdSubscriptions, setEventIdSubscriptions } = useContext(EventSubscriptionsContext);
-
-  useEffect(() => {
-    if (city) {
-      getCityById(city, setCityData);
-    }
-  }, [city]);
-
-  useEffect(() => {
-    const hasSubscriptionIds = eventIdSubscriptions.length > 0;
-
-    if (hasSubscriptionIds) {
-      const eventIdSubscribed = eventIdSubscriptions.some(subEventId => _.isEqual(subEventId, id));
-      setEventIsAlreadySubscribed(eventIdSubscribed);
-    }
-  }, [eventIdSubscriptions]);
-
-  useEffect(() => {
-    setEventIsAlreadySubscribed(checkEventSubscriptionIsStored(id));
-  }, []);
+  const [displayModal, toggleModalDisplay] = useModalDisplay();
+  const [eventIdRegistrations, setEventIdRegistrations] = useContext(EventRegistrationsContext);
+  const [eventIsAlreadyRegistered] = useEventRegistrationCheck(id);
+  const [cityData] = useEventCity(city);
 
   const getSingUpModalText = (eventName, date, cityName) => {
     return `You are about to sign up for ${eventName}. 
@@ -61,9 +40,9 @@ const Event = ({ event }) => {
   };
 
   const signUpHandler = () => {
-    if (!eventIsAlreadySubscribed) {
-      setEventIdSubscriptions([...eventIdSubscriptions, id]);
-      useModal.toggleModalDisplay();
+    if (!eventIsAlreadyRegistered) {
+      setEventIdRegistrations([...eventIdRegistrations, id]);
+      toggleModalDisplay();
     }
   };
 
@@ -72,11 +51,12 @@ const Event = ({ event }) => {
   return (
     <EventUI
       event={event}
-      eventIsAlreadySubscribed={eventIsAlreadySubscribed}
-      eventIdSubscriptions={eventIdSubscriptions}
-      setEventIdSubscriptions={setEventIdSubscriptions}
+      eventIsAlreadyRegistered={eventIsAlreadyRegistered}
+      eventIdRegistrations={eventIdRegistrations}
+      setEventIdRegistrations={setEventIdRegistrations}
       signUpHandler={signUpHandler}
-      {...useModal}
+      displayModal={displayModal}
+      toggleModalDisplay={toggleModalDisplay}
       {...eventDisplayInfo}
     />
   );

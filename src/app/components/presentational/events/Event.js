@@ -16,15 +16,15 @@ const Event = ({
   eventDuration,
   cityName,
   singUpModalText,
-  display,
+  displayModal,
   toggleModalDisplay,
-  eventIsAlreadySubscribed,
+  eventIsAlreadyRegistered,
   signUpHandler,
 }) => {
   const { isFree, name } = event;
   const { YOU_ARE_IN, SIGNUP } = BUTTON;
   const cityNameAndDuration = `${cityName} - ${`${eventDuration}h`}`;
-  const buttonText = eventIsAlreadySubscribed ? YOU_ARE_IN : SIGNUP;
+  const buttonText = eventIsAlreadyRegistered ? YOU_ARE_IN : SIGNUP;
 
   return (
     <>
@@ -37,13 +37,13 @@ const Event = ({
         <Button
           cssClass="event__sign-up"
           text={buttonText}
-          clickHandler={!eventIsAlreadySubscribed ? toggleModalDisplay : () => true}
+          clickHandler={!eventIsAlreadyRegistered ? toggleModalDisplay : () => true}
         />
-        {!eventIsAlreadySubscribed ? (
+        {!eventIsAlreadyRegistered ? (
           <Modal
             titleText={TITLE_TEXT}
             text={singUpModalText}
-            display={display}
+            display={displayModal}
             closeHandler={toggleModalDisplay}
             submitHandler={signUpHandler}
           />
@@ -55,8 +55,8 @@ const Event = ({
 
 Event.propTypes = {
   signUpHandler: PropTypes.func.isRequired,
-  eventIsAlreadySubscribed: PropTypes.bool.isRequired,
-  display: PropTypes.bool.isRequired,
+  eventIsAlreadyRegistered: PropTypes.bool.isRequired,
+  displayModal: PropTypes.bool.isRequired,
   toggleModalDisplay: PropTypes.func.isRequired,
   singUpModalText: PropTypes.string.isRequired,
   eventStartTime: PropTypes.string.isRequired,

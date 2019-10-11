@@ -24,7 +24,6 @@ body {
   @include media('<tablet') {
     margin: 5rem 0 0 0;
   }
-  @include flex-config-container($justify: center, $align-items: center);
 }
 
 code {
