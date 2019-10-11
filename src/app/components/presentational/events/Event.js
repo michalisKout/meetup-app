@@ -28,8 +28,10 @@ const Event = ({
 
   return (
     <>
-      <div className="event" role="listitem">
-        <div className="event__time">{eventStartTime}</div>
+      <div className="event" role="listitem" aria-level="4">
+        <div className="event__time" role="heading">
+          {eventStartTime}
+        </div>
         <div className="event__info">
           <Title text={name} isFree={isFree} />
           <div className="event__info__city-name">{cityNameAndDuration}</div>
