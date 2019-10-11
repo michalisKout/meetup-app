@@ -7,24 +7,24 @@ import { SearchContext, FreeEventsContext } from '../../utils/hooks-utils';
 const initEventsPerDay = [];
 
 export default function EventSectionContainer() {
-  const [eventsListData, setEventsPerDay] = useState(initEventsPerDay);
+  const [eventsListData, setEventsListData] = useState(initEventsPerDay);
   const { searchValue } = useContext(SearchContext);
   const { freeEvents } = useContext(FreeEventsContext);
 
   useEffect(() => {
     const eventName = searchValue;
     const validationRegex = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
-    const isValidInput = validationRegex.test(eventName);
+    const isValidInput = eventName && validationRegex.test(eventName);
 
     if (isValidInput) {
-      getEventsByName(setEventsPerDay, eventName);
+      getEventsByName(setEventsListData, eventName);
     } else {
-      getEventsByDate(setEventsPerDay);
+      getEventsByDate(setEventsListData);
     }
   }, [searchValue]);
 
   useEffect(() => {
-    setEventsPerDay(freeEvents);
+    setEventsListData(freeEvents);
   }, [freeEvents]);
 
   return <EventSections eventsListData={eventsListData} />;

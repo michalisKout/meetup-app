@@ -15,7 +15,9 @@ export const getAllEvents = async stateHandler => {
 
 export const getEventsByName = async (stateHandler, eventName) => {
   try {
-    const eventsResponse = await getAPIResponseWithQuery(`?name_like=${eventName}`);
+    const eventsResponse = await getAPIResponseWithQuery(
+      `?name_like=${eventName}&_sort=startDate&_order=asc`,
+    );
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
@@ -43,7 +45,7 @@ export const getEventsByIdSortedByDate = async (stateHandler, eventIdList) => {
 
 export const getFreeEvents = async stateHandler => {
   try {
-    const eventsResponse = await getAPIResponseWithQuery(`?isFree=true`);
+    const eventsResponse = await getAPIResponseWithQuery(`?isFree=true&_sort=startDate&_order=asc`);
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
