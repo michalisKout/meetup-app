@@ -10,7 +10,7 @@ beforeEach(() => {
 describe('AllEventsContainer', () => {
   it('should render container without events included', () => {
     const wrapper = mount(<AllEventsContainer />);
-    expect(wrapper.contains(Events)).toEqual(true);
+    expect(wrapper.contains(Events)).toBeTruthy();
     expect(wrapper.html()).toMatchSnapshot();
   });
 });

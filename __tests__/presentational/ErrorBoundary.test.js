@@ -20,7 +20,7 @@ describe('ErrorBoundary', () => {
     const error = new Error('');
     wrapper.find(DummyComponentWithError).simulateError(error.toString());
 
-    expect(wrapper.state().compomentHasError).toEqual(true);
+    expect(wrapper.state().compomentHasError).toBeTruthy();
     expect(wrapper.state().errorMessage).toEqual('Error');
   });
 });

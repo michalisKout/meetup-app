@@ -1,24 +1,24 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import Logo from '../../src/app/components/presentational/common/Logo';
+import { render, fireEvent } from '@testing-library/react';
+
+import Modal from '../../src/app/components/presentational/common/Modal';
 
 beforeEach(() => {
   jest.resetModules();
 });
 
 describe('Modal Component', () => {
-  it('should match snapshot including default props', () => {
+  it('should render modal default props and then close', () => {
     const props = {
       titleText: 'test modal',
       text: 'this is a modal for testing',
-      closeHandler: () => true,
+      closeHandler: jest.fn(),
       display: true,
       submitHandler: () => true,
     };
-    const component = renderer.create(<Logo {...props} />);
-
-    const componentTree = component.toJSON();
-
-    expect(componentTree).toMatchSnapshot();
+    const { getByText } = render(<Modal {...props} />);
+    expect(getByText(/test modal/i)).toBeTruthy();
+    fireEvent.click(getByText(/×/i));
+    expect(props.closeHandler).toHaveBeenCalledTimes(1);
   });
 });

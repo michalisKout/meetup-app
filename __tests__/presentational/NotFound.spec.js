@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import NotFound from '../../src/app/components/presentational/NotFound';
+import NotFound from '../../src/app/ErrorBoundary/NotFound';
 
 beforeEach(() => {
   jest.resetModules();
