@@ -16,11 +16,7 @@ const Events = ({ eventsListData, cssClass }) => {
   };
 
   const shouldDisplayEventsPerDay = eventsListData.length !== 0;
-  const eventsPerDay = shouldDisplayEventsPerDay ? (
-    eventsListData.map(getEventPerDay)
-  ) : (
-    <div className="events--fallback-text">There are no avaliable events... :(</div>
-  );
+  const eventsPerDay = shouldDisplayEventsPerDay ? eventsListData.map(getEventPerDay) : null;
 
   return (
     <>
