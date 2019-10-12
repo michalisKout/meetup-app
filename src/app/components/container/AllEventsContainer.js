@@ -10,7 +10,7 @@ export default function EventSectionContainer() {
   return (
     <>
       <EventFilters />
-      <EventsWrapper eventsListData={eventsListData} />
+      <EventsWrapper cssClass="" eventsListData={eventsListData} />
     </>
   );
 }

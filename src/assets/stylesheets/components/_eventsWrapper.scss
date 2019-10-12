@@ -1,9 +1,13 @@
 .events {
+  margin-top: 2rem;
   display: block;
   padding: 0 20%;
   min-width: 300px;
   &-wrapper {
     display: block;
+  }
+  &--marginTop {
+    margin-top: 10rem;
   }
 }
 

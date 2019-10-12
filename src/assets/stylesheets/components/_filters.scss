@@ -1,7 +1,6 @@
 .filters {
   min-width: 100%;
   @include flex-config-container($direction: column, $justify: space-between);
-  padding: 0 5rem;
   margin-top: 10rem;
   &__event-search {
     width: 25%;
@@ -19,11 +18,5 @@
     .free-text:hover {
       color: $green;
     }
-  }
-}
-
-@include media('<desktop') {
-  .filters {
-    padding: 0;
   }
 }

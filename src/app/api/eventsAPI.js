@@ -2,22 +2,24 @@ import { updateStateWithResponseData } from '../utils/api-utils';
 import { constructErrorMessage } from '../utils/error-utils';
 import axios from './axios.instance';
 
+const SORT_BY_DATE_QUERY = `_sort=startDate&_order=asc`;
+
 const getAPIResponseWithQuery = query => axios.get(`events${query}`);
 
 export const getAllEvents = async stateHandler => {
   try {
     const eventsResponse = await getAPIResponseWithQuery('');
-    const { data } = eventsResponse;
-    stateHandler(data);
+
+    updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(error, 'getAllUnRegisteredEvents'));
+    throw new Error(constructErrorMessage(error));
   }
 };
 
 export const getEventsByName = async (stateHandler, eventName) => {
   try {
     const eventsResponse = await getAPIResponseWithQuery(
-      `?name_like=${eventName}&_sort=startDate&_order=asc`,
+      `?name_like=${eventName}&${SORT_BY_DATE_QUERY}`,
     );
 
     updateStateWithResponseData(eventsResponse, stateHandler);
@@ -28,14 +30,10 @@ export const getEventsByName = async (stateHandler, eventName) => {
 
 export const getEventsByIdSortedByDate = async (stateHandler, eventIdList) => {
   try {
-    const bindedQueryParameters = eventIdList
-      .map(eventId => {
-        return `id=${eventId}`;
-      })
-      .join('&');
+    const bindedQueryParameters = eventIdList.map(eventId => `id=${eventId}`).join('&');
 
     const eventsResponse = await getAPIResponseWithQuery(
-      `?${bindedQueryParameters}&_sort=startDate&_order=asc`,
+      `?${bindedQueryParameters}&${SORT_BY_DATE_QUERY}`,
     );
 
     updateStateWithResponseData(eventsResponse, stateHandler);
@@ -46,7 +44,7 @@ export const getEventsByIdSortedByDate = async (stateHandler, eventIdList) => {
 
 export const getFreeEvents = async stateHandler => {
   try {
-    const eventsResponse = await getAPIResponseWithQuery(`?isFree=true&_sort=startDate&_order=asc`);
+    const eventsResponse = await getAPIResponseWithQuery(`?isFree=true&${SORT_BY_DATE_QUERY}`);
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
@@ -56,13 +54,7 @@ export const getFreeEvents = async stateHandler => {
 
 export const getEventsByDate = async stateHandler => {
   try {
-    // const bindedExcludeQueryParameters = eventIdsListToExclude
-    //   .map(eventId => {
-    //     return `id_ne=${eventId}`;
-    //   })
-    //   .join('&');
-    const eventsResponse = await getAPIResponseWithQuery(`?_sort=startDate&_order=asc`);
-    console.log(eventsResponse);
+    const eventsResponse = await getAPIResponseWithQuery(`?${SORT_BY_DATE_QUERY}`);
 
     updateStateWithResponseData(eventsResponse, stateHandler);
   } catch (error) {
