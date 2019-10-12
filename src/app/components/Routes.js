@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import NotFound from './presentational/NotFound';
 import AllEventsContainer from './container/AllEventsContainer';
+import NotFound from './presentational/NotFound';
 import MyEventsContainer from './container/MyEventsContainer';
-import FilterProviders from './FilterProviders';
+import FilterProviders from './providers/FilterProviders';
 
 const Routes = () => {
   return (

@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import _ from 'lodash';
 import * as EventsAPI from '../../api/eventsAPI';
-import { getCityById } from '../../api/citiesAPI';
 
 const EVENT_NAME_VALIDATION = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
 
@@ -27,15 +26,19 @@ export const useEventSubScription = () => {
 export const useEventsListData = () => {
   const { searchValue } = useContext(SearchContext);
   const { freeEvents } = useContext(FreeEventsContext);
+
   const [eventsListData, setEventsListData] = useState([]);
-  const [optimizedSearchLength, setOptimizedSearchLength] = useState(3);
+  const [optimizedSearchLengthOnQuickTyping, setOptimizedSearchLengthOnQuickTyping] = useState(3);
   const searchValueIsEmpty = searchValue === '';
 
   const isSearchValueOptimized = () => {
     const searchValueLetterLength = searchValue.split('').length;
-    const hasTheRequiredLength = searchValueLetterLength >= optimizedSearchLength;
+    const hasTheRequiredLength = searchValueLetterLength >= optimizedSearchLengthOnQuickTyping;
     if (hasTheRequiredLength) {
-      setOptimizedSearchLength(optimizedSearchLength + searchValue.split('').length);
+      const dyncamicValidSearchLength =
+        optimizedSearchLengthOnQuickTyping + searchValue.split('').length;
+
+      setOptimizedSearchLengthOnQuickTyping(dyncamicValidSearchLength);
     }
 
     return hasTheRequiredLength;
@@ -52,9 +55,8 @@ export const useEventsListData = () => {
   };
 
   useEffect(() => {
-    let fetchNotFinished = true;
-
-    if (fetchNotFinished) {
+    let isFetching = true;
+    if (isFetching) {
       if (searchValue) {
         searchForEvents();
       }
@@ -65,8 +67,8 @@ export const useEventsListData = () => {
     }
 
     return () => {
-      fetchNotFinished = false;
-      setOptimizedSearchLength(3);
+      isFetching = false;
+      setOptimizedSearchLengthOnQuickTyping(3);
     };
   }, [searchValue]);
 
@@ -104,7 +106,7 @@ export const useEventCity = cityId => {
   useEffect(() => {
     let cityCleanup = true;
     if (cityId && cityCleanup) {
-      getCityById(cityId, setCityData);
+      EventsAPI.getCityEventById(cityId, setCityData);
     }
     return () => (cityCleanup = false);
   }, [cityId]);

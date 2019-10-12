@@ -5,7 +5,7 @@ import {
   FreeEventsContext,
   EventRegistrationsContext,
   useEventSubScription,
-} from '../utils/customHooks/event-hooks';
+} from '../../utils/customHooks/event-hooks';
 
 const FilterProviders = ({ children }) => {
   const [eventIdRegistrations, setEventIdRegistrations] = useEventSubScription();
