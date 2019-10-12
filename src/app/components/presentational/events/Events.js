@@ -4,9 +4,9 @@ import { getDate } from '../../../utils/date-utils';
 import EventsPerDay from './EventsPerDay';
 
 const Events = ({ eventsListData, cssClass }) => {
-  const getEventListPerDay = (eventsList, index) => {
-    const listHasEvents = eventsList.length !== 0;
-    const date = listHasEvents && getDate(eventsList[0].startDate);
+  const getEventPerDay = (eventsList, index) => {
+    const dayHasEvents = eventsList.length !== 0;
+    const date = dayHasEvents && getDate(eventsList[0].startDate);
     const key = `events-wrapper-${index}`;
     return (
       <div key={key} className="events-wrapper" role="list">
@@ -16,15 +16,15 @@ const Events = ({ eventsListData, cssClass }) => {
   };
 
   const shouldDisplayEventsPerDay = eventsListData.length !== 0;
-  const eventListPerDay = shouldDisplayEventsPerDay ? (
-    eventsListData.map(getEventListPerDay)
+  const eventsPerDay = shouldDisplayEventsPerDay ? (
+    eventsListData.map(getEventPerDay)
   ) : (
     <div className="events--fallback-text">There are no avaliable events... :(</div>
   );
 
   return (
     <>
-      <section className={`events ${cssClass}`}>{eventListPerDay}</section>
+      <section className={`events ${cssClass}`}>{eventsPerDay}</section>
     </>
   );
 };

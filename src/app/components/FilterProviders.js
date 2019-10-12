@@ -7,7 +7,7 @@ import {
   useEventSubScription,
 } from '../utils/customHooks/event-hooks';
 
-const Providers = ({ children }) => {
+const FilterProviders = ({ children }) => {
   const [eventIdRegistrations, setEventIdRegistrations] = useEventSubScription();
   const [searchValue, setSearchValue] = useState('');
   const [freeEvents, setFreeEvents] = useState([]);
@@ -22,7 +22,7 @@ const Providers = ({ children }) => {
   );
 };
 
-Providers.propTypes = {
+FilterProviders.propTypes = {
   children: PropTypes.object.isRequired,
 };
-export default Providers;
+export default FilterProviders;
