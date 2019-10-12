@@ -6,15 +6,17 @@ exports[`Event Component should match snapshot 1`] = `
   role="listitem"
 >
   <div
+    aria-level="3"
     className="event__time"
+    role="heading"
   >
-    
+    19:00
   </div>
   <div
     className="event__info"
   >
     <div
-      aria-level="3"
+      aria-level="4"
       className="event__title"
       role="heading"
     >
@@ -26,18 +28,15 @@ exports[`Event Component should match snapshot 1`] = `
     <div
       className="event__info__city-name"
     >
-       - 0h
+      Mallorca - 1h
     </div>
   </div>
-  <div
-    className="event__sign-up"
+  <button
+    className="event__sign-up btn"
+    onClick={[Function]}
+    type="button"
   >
-    <button
-      className="btn btn-blue"
-      type="button"
-    >
-      Sign up
-    </button>
-  </div>
+    You're in
+  </button>
 </div>
 `;

@@ -9,13 +9,7 @@ const Navbar = () => {
     const { text, linkPath, cssClass } = navLinkConfig;
     const key = `navitem_${index}`;
     return (
-      <NavLink
-        key={key}
-        tabIndex={index}
-        to={linkPath}
-        className={cssClass}
-        activeClassName="active"
-      >
+      <NavLink key={key} tabIndex="0" to={linkPath} className={cssClass} activeClassName="active">
         {text}
       </NavLink>
     );

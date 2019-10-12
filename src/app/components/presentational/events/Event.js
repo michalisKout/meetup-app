@@ -28,8 +28,8 @@ const Event = ({
 
   return (
     <>
-      <div className="event" role="listitem" aria-level="4">
-        <div className="event__time" role="heading">
+      <div className="event" role="listitem">
+        <div className="event__time" role="heading" aria-level="3">
           {eventStartTime}
         </div>
         <div className="event__info">

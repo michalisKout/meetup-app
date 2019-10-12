@@ -8,9 +8,12 @@ const EventFilters = () => {
   const { setFreeEvents } = useContext(FreeEventsContext);
   const inputHandler = event => setSearchValue(event.target.value);
   const clickHandler = () => getFreeEvents(setFreeEvents);
+
   return (
     <section className="filters">
       <input
+        aria-label="Close"
+        id="searchinput"
         type="text"
         className="filters__event-search"
         value={searchValue}

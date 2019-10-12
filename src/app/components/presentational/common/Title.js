@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Title = ({ text, isFree }) => {
   const freeLabel = isFree ? ' FREE!!!' : null;
   return (
-    <div className="event__title" role="heading" aria-level="3">
+    <div className="event__title" role="heading" aria-level="4">
       {text}
       <span className="event__title--free">{freeLabel}</span>
     </div>

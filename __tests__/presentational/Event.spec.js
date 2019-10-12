@@ -13,9 +13,19 @@ describe('Event Component', () => {
       endDate: new Date(1).toDateString(),
     };
 
-    const component = renderer.create(
-      <Event event={event} eventStartTime="" eventDuration={0} cityName="" />,
-    );
+    const props = {
+      event,
+      eventStartTime: '19:00',
+      eventDuration: 1,
+      cityName: 'Mallorca',
+      singUpModalText: 'This is a test modal',
+      displayModal: true,
+      toggleModalDisplay: () => true,
+      eventIsAlreadyRegistered: true,
+      signUpHandler: () => true,
+    };
+
+    const component = renderer.create(<Event {...props} />);
 
     const componentTree = component.toJSON();
 

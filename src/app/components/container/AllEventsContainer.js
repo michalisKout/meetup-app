@@ -4,7 +4,7 @@ import Events from '../presentational/events/Events';
 import { useEventsListData } from '../../utils/customHooks/event-hooks';
 import EventFilters from '../presentational/events/EventFilters';
 
-export default function EventSectionContainer() {
+export default function AllEventsContainer() {
   const [eventsListData] = useEventsListData();
 
   return (
@@ -15,6 +15,6 @@ export default function EventSectionContainer() {
   );
 }
 
-EventSectionContainer.prototype = {
+AllEventsContainer.prototype = {
   eventsListData: PropTypes.array.isRequired,
 };

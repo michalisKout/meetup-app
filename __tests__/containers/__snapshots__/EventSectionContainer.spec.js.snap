@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`EventSectionContainer should call useEffect and match snapshot 1`] = `"Events are loading..."`;
