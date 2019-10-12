@@ -29,7 +29,7 @@ export const useEventsListData = () => {
   const { freeEvents } = useContext(FreeEventsContext);
   const [eventsListData, setEventsListData] = useState([]);
   const [optimizedSearchLength, setOptimizedSearchLength] = useState(3);
-  const inputIsEmpty = searchValue === '';
+  const searchValueIsEmpty = searchValue === '';
 
   const isSearchValueOptimized = () => {
     const searchValueLetterLength = searchValue.split('').length;
@@ -59,7 +59,7 @@ export const useEventsListData = () => {
         searchForEvents();
       }
 
-      if (inputIsEmpty) {
+      if (searchValueIsEmpty) {
         EventsAPI.getEventsByDate(setEventsListData);
       }
     }
