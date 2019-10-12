@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventsPerDay Component should match snapshot including default props 1`] = `
+Array [
+  <header>
+    <h2>
+      Monday 29th June
+    </h2>
+  </header>,
+  <div
+    role="listitem"
+  >
+    <div
+      className="event-list-perday"
+      role="list"
+    >
+      <div
+        className="event"
+        role="listitem"
+      >
+        <div
+          aria-level="3"
+          className="event__time"
+          role="heading"
+        >
+          18.00
+        </div>
+        <div
+          className="event__info"
+        >
+          <div
+            aria-level="4"
+            className="event__title"
+            role="heading"
+          >
+            firstTestEvent
+            <span
+              className="event__title--free"
+            />
+          </div>
+          <div
+            className="event__info__city-name"
+          >
+             - -434201h
+          </div>
+        </div>
+        <button
+          className="event__sign-up btn"
+          onClick={[Function]}
+          type="button"
+        >
+          Sign up
+        </button>
+      </div>
+      <div
+        className="event"
+        role="listitem"
+      >
+        <div
+          aria-level="3"
+          className="event__time"
+          role="heading"
+        >
+          20.00
+        </div>
+        <div
+          className="event__info"
+        >
+          <div
+            aria-level="4"
+            className="event__title"
+            role="heading"
+          >
+            secondTestEvent
+            <span
+              className="event__title--free"
+            />
+          </div>
+          <div
+            className="event__info__city-name"
+          >
+             - -434203h
+          </div>
+        </div>
+        <button
+          className="event__sign-up btn"
+          onClick={[Function]}
+          type="button"
+        >
+          Sign up
+        </button>
+      </div>
+    </div>
+  </div>,
+]
+`;

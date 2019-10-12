@@ -7,6 +7,7 @@ const EventsPerDay = ({ date, events }) => {
     const key = `key_${event.id}`;
     return <EventContainer key={key} event={event} />;
   });
+
   return (
     <>
       <header>

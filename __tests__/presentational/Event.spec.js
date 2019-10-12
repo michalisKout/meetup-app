@@ -2,6 +2,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Event from '../../src/app/components/presentational/events/Event';
 
+beforeEach(() => {
+  jest.resetModules();
+});
+
 describe('Event Component', () => {
   it('should match snapshot', () => {
     const event = {

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AllEventsContainer should render container without events included 1`] = `"<section class=\\"filters\\"><input aria-label=\\"Close\\" id=\\"searchinput\\" type=\\"text\\" class=\\"filters__event-search\\" placeholder=\\"Search an event...\\" value=\\"\\"><button type=\\"button\\" class=\\"filters__free-events btn btn\\">Discover Free Events</button></section><section class=\\"events \\"></section>"`;

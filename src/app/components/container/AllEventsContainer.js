@@ -10,7 +10,7 @@ export default function AllEventsContainer() {
   return (
     <>
       <EventFilters />
-      <Events cssClass="" eventsListData={eventsListData} />
+      <Events cssClass="" eventsListData={eventsListData || []} />
     </>
   );
 }

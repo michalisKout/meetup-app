@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Event Component should match snapshot when title does not include free label 1`] = `
+exports[`Title Component should match snapshot when text does not include free label 1`] = `
 <div
   aria-level="4"
   className="event__title"
@@ -13,7 +13,7 @@ exports[`Event Component should match snapshot when title does not include free 
 </div>
 `;
 
-exports[`Event Component should match snapshot when title includes free label 1`] = `
+exports[`Title Component should match snapshot when text includes free label 1`] = `
 <div
   aria-level="4"
   className="event__title"

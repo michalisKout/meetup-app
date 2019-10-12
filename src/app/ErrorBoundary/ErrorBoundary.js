@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { constructErrorMessage } from '../utils/error-utils';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -16,10 +17,11 @@ export default class ErrorBoundary extends Component {
 
   handleError(error) {
     const errorInfo = error && error.toString();
+
     return (
       <div className="error">
         <h1>Something went wrong!</h1>
-        <p>{errorInfo}</p>
+        <p>{constructErrorMessage(errorInfo)}</p>
       </div>
     );
   }

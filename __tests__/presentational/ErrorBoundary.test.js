@@ -6,6 +6,10 @@ const DummyComponentWithError = () => {
   return <div>test Component</div>;
 };
 
+beforeEach(() => {
+  jest.resetModules();
+});
+
 describe('ErrorBoundary', () => {
   it('should catch the error', () => {
     const wrapper = shallow(
@@ -13,9 +17,10 @@ describe('ErrorBoundary', () => {
         <DummyComponentWithError />
       </ErrorBoundary>,
     );
-    const error = new Error('error');
-    wrapper.find(DummyComponentWithError).simulateError(error);
+    const error = new Error('');
+    wrapper.find(DummyComponentWithError).simulateError(error.toString());
 
     expect(wrapper.state().compomentHasError).toEqual(true);
+    expect(wrapper.state().errorMessage).toEqual('Error');
   });
 });

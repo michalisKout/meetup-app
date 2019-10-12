@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventsFilters Component should match snapshot including default props 1`] = `
+<section
+  className="filters"
+>
+  <input
+    aria-label="Close"
+    className="filters__event-search"
+    id="searchinput"
+    onChange={[Function]}
+    placeholder="Search an event..."
+    type="text"
+  />
+  <button
+    className="filters__free-events btn btn"
+    onClick={[Function]}
+    type="button"
+  >
+    Discover Free Events
+  </button>
+</section>
+`;

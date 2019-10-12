@@ -2,8 +2,12 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Title from '../../src/app/components/presentational/common/Title';
 
-describe('Event Component', () => {
-  it('should match snapshot when title does not include free label', () => {
+beforeEach(() => {
+  jest.resetModules();
+});
+
+describe('Title Component', () => {
+  it('should match snapshot when text does not include free label', () => {
     const props = {
       isFree: false,
       text: 'testText',
@@ -14,7 +18,7 @@ describe('Event Component', () => {
 
     expect(componentTree).toMatchSnapshot();
   });
-  it('should match snapshot when title includes free label', () => {
+  it('should match snapshot when text includes free label', () => {
     const props = {
       isFree: true,
       text: 'testText',

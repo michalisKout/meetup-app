@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo Component should match snapshot including default props 1`] = `
+<div
+  className="topheader__logo"
+>
+  <span
+    className="topheader__logo--small"
+  >
+    my
+  </span>
+  <span
+    className="topheader__logo--large"
+  >
+    Logo
+  </span>
+</div>
+`;

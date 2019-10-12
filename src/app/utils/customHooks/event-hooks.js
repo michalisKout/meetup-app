@@ -6,8 +6,8 @@ import { getCityById } from '../../api/citiesAPI';
 const EVENT_NAME_VALIDATION = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
 
 export const EventRegistrationsContext = createContext([]);
-export const SearchContext = createContext(null);
-export const FreeEventsContext = createContext(null);
+export const SearchContext = createContext('');
+export const FreeEventsContext = createContext([]);
 
 export const useEventSubScription = () => {
   const initRegistrationsId = JSON.parse(localStorage.getItem('eventIdRegistrationsStorage')) || [];
@@ -83,7 +83,7 @@ export const useEventRegistrationCheck = id => {
   const [eventIdRegistrations] = useContext(EventRegistrationsContext);
 
   useEffect(() => {
-    const hasRegistrationIds = eventIdRegistrations.length > 0;
+    const hasRegistrationIds = eventIdRegistrations && eventIdRegistrations.length > 0;
 
     if (hasRegistrationIds) {
       const eventIdRegistered = eventIdRegistrations.some(subEventId => _.isEqual(subEventId, id));
