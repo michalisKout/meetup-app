@@ -5,8 +5,7 @@ import axios from './axios.instance';
 const EVENTS_RESOURCE = 'events';
 const CITIES_RESOURCE = 'cities';
 const SORT_BY_DATE_QUERY = `_sort=startDate&_order=asc`;
-const CITIES_ERROR_MESSAGE = 'There is a problem by fetching cities API resource';
-const EVENTS_ERROR_MESSAGE = 'There is a problem by fetching events API resource';
+const getApiErrorMessage = resource => `There is a problem by fetching ${resource} API resource`;
 
 const getAPIResponseWithQuery = query => axios.get(`${EVENTS_RESOURCE}${query}`);
 
@@ -21,7 +20,7 @@ const eventsResponseHandler = async (stateHandler, queryParams) => {
 
     updateStateWithTransformedResponseData(eventsResponse, stateHandler);
   } catch (error) {
-    throw new Error(constructErrorMessage(`${EVENTS_ERROR_MESSAGE}, ${error}`));
+    throw new Error(constructErrorMessage(`${getApiErrorMessage(EVENTS_RESOURCE)}, ${error}`));
   }
 };
 
@@ -56,6 +55,6 @@ export const getCityEventById = async (cityId, cityHandler) => {
     const city = await axios.get(urlToFetch);
     cityHandler(city.data);
   } catch (e) {
-    throw new Error(constructErrorMessage(CITIES_ERROR_MESSAGE));
+    throw new Error(constructErrorMessage(getApiErrorMessage(CITIES_RESOURCE)));
   }
 };

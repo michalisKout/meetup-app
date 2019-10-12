@@ -5,7 +5,8 @@ const REQUEST_DELAY_TIME = 600;
 
 const optimizeSearchRequestTime = config => {
   const { url } = config;
-  if (url.includes('name_like')) {
+  const isSearchRequest = url.includes('name_like');
+  if (isSearchRequest) {
     return new Promise(resolve => setTimeout(() => resolve(config), REQUEST_DELAY_TIME));
   }
   return config;
