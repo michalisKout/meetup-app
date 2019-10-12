@@ -15,7 +15,7 @@ const MyEvents = () => {
     }
   }, []);
 
-  return <Events cssClass="events--marginTop" eventsListData={eventsRegistrations} />;
+  return <Events cssClass="marginTop" eventsListData={eventsRegistrations} />;
 };
 
 export default MyEvents;

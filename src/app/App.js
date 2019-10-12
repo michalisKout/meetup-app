@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter as Router } from 'react-router-dom';
-import RoutersWithProviders from './components/RoutersWithProviders';
+import Routes from './components/Routes';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Header from './components/presentational/header/Header';
 
@@ -10,7 +10,7 @@ const App = () => {
       <ErrorBoundary>
         <Header />
         <main>
-          <RoutersWithProviders />
+          <Routes />
         </main>
       </ErrorBoundary>
     </Router>

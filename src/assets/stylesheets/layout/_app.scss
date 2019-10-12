@@ -2,7 +2,8 @@ main {
   margin-top: 5rem;
 }
 
-.page-not-found {
+.page-not-found,
+.events--fallback-text {
   @include font-config($size: 2rem, $weight: 800);
   width: 100%;
   text-align: center;

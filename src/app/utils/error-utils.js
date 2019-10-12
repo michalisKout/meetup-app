@@ -1,2 +1,2 @@
-export const constructErrorMessage = (errorDetails = '', invokedFn = '') =>
-  `Server responde with an error: ${errorDetails}. Caused by ${invokedFn}`;
+export const constructErrorMessage = (errorDetails = '') =>
+  `Server responde with an error: ${errorDetails}.`;

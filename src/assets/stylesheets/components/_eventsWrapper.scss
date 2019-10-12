@@ -6,9 +6,6 @@
   &-wrapper {
     display: block;
   }
-  &--marginTop {
-    margin-top: 10rem;
-  }
 }
 
 @include media('<desktop') {
@@ -21,4 +18,8 @@
   .events {
     padding: 0 1%;
   }
+}
+
+.marginTop {
+  margin-top: 10rem;
 }

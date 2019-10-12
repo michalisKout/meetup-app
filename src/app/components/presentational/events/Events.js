@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getDate } from '../../../utils/date-utils';
-import EventsListPerDay from './EventsListPerDay';
+import EventsPerDay from './EventsPerDay';
 
 const Events = ({ eventsListData, cssClass }) => {
   const getEventListPerDay = (eventsList, index) => {
@@ -10,13 +10,17 @@ const Events = ({ eventsListData, cssClass }) => {
     const key = `events-wrapper-${index}`;
     return (
       <div key={key} className="events-wrapper" role="list">
-        <EventsListPerDay date={date} events={eventsList} />
+        <EventsPerDay date={date} events={eventsList} />
       </div>
     );
   };
 
   const shouldDisplayEventsPerDay = eventsListData.length !== 0;
-  const eventListPerDay = shouldDisplayEventsPerDay ? eventsListData.map(getEventListPerDay) : null;
+  const eventListPerDay = shouldDisplayEventsPerDay ? (
+    eventsListData.map(getEventListPerDay)
+  ) : (
+    <div className="events--fallback-text">There are no avaliable events... :(</div>
+  );
 
   return (
     <>
