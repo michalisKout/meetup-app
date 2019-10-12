@@ -3,6 +3,8 @@ import _ from 'lodash';
 import * as EventsAPI from '../../api/eventsAPI';
 import { getCityById } from '../../api/citiesAPI';
 
+const EVENT_NAME_VALIDATION = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
+
 export const EventRegistrationsContext = createContext([]);
 export const SearchContext = createContext(null);
 export const FreeEventsContext = createContext(null);
@@ -26,24 +28,45 @@ export const useEventsListData = () => {
   const { searchValue } = useContext(SearchContext);
   const { freeEvents } = useContext(FreeEventsContext);
   const [eventsListData, setEventsListData] = useState([]);
+  const [optimizedSearchLength, setOptimizedSearchLength] = useState(3);
+  const inputIsEmpty = searchValue === '';
+
+  const isSearchValueOptimized = () => {
+    const searchValueLetterLength = searchValue.split('').length;
+    const hasTheRequiredLength = searchValueLetterLength >= optimizedSearchLength;
+    if (hasTheRequiredLength) {
+      setOptimizedSearchLength(optimizedSearchLength + searchValue.split('').length);
+    }
+
+    return hasTheRequiredLength;
+  };
+
+  const searchForEvents = () => {
+    const eventName = searchValue;
+    const isOptimizedAndValidInput =
+      eventName && EVENT_NAME_VALIDATION.test(eventName) && isSearchValueOptimized();
+
+    if (isOptimizedAndValidInput) {
+      EventsAPI.getEventsByName(setEventsListData, eventName);
+    }
+  };
 
   useEffect(() => {
-    let fetchIsFinished = true;
+    let fetchNotFinished = true;
 
-    if (fetchIsFinished) {
-      const eventName = searchValue;
-      const validationRegex = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
-      const isValidInput = eventName && validationRegex.test(eventName);
+    if (fetchNotFinished) {
+      if (searchValue) {
+        searchForEvents();
+      }
 
-      if (isValidInput) {
-        EventsAPI.getEventsByName(setEventsListData, eventName);
-      } else {
+      if (inputIsEmpty) {
         EventsAPI.getEventsByDate(setEventsListData);
       }
     }
 
     return () => {
-      fetchIsFinished = false;
+      fetchNotFinished = false;
+      setOptimizedSearchLength(3);
     };
   }, [searchValue]);
 
@@ -79,11 +102,11 @@ export const useEventCity = cityId => {
 
   const [cityData, setCityData] = useState(initCityData);
   useEffect(() => {
-    let cityIsFetched = true;
-    if (cityId && cityIsFetched) {
+    let cityCleanup = true;
+    if (cityId && cityCleanup) {
       getCityById(cityId, setCityData);
     }
-    return () => (cityIsFetched = false);
+    return () => (cityCleanup = false);
   }, [cityId]);
 
   return [cityData, setCityData];
