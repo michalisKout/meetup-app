@@ -3,17 +3,14 @@ import PropTypes from 'prop-types';
 import { getDate } from '../../../utils/date-utils';
 import EventsListPerDay from './EventsListPerDay';
 
-const EventsWrapper = ({ eventsListData, cssClass }) => {
+const Events = ({ eventsListData, cssClass }) => {
   const getEventListPerDay = (eventsList, index) => {
     const listHasEvents = eventsList.length !== 0;
     const date = listHasEvents && getDate(eventsList[0].startDate);
     const key = `events-wrapper-${index}`;
     return (
       <div key={key} className="events-wrapper" role="list">
-        <header>
-          <h2>{date}</h2>
-        </header>
-        <EventsListPerDay events={eventsList} />
+        <EventsListPerDay date={date} events={eventsList} />
       </div>
     );
   };
@@ -28,7 +25,7 @@ const EventsWrapper = ({ eventsListData, cssClass }) => {
   );
 };
 
-EventsWrapper.propTypes = {
+Events.propTypes = {
   cssClass: PropTypes.string.isRequired,
   eventsListData: PropTypes.arrayOf(
     PropTypes.arrayOf(
@@ -44,4 +41,4 @@ EventsWrapper.propTypes = {
   ).isRequired,
 };
 
-export default EventsWrapper;
+export default Events;

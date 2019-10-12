@@ -6,20 +6,22 @@ import { SearchContext, FreeEventsContext } from '../../../utils/customHooks/eve
 const EventFilters = () => {
   const { searchValue, setSearchValue } = useContext(SearchContext);
   const { setFreeEvents } = useContext(FreeEventsContext);
+  const inputHandler = event => setSearchValue(event.target.value);
+  const clickHandler = () => getFreeEvents(setFreeEvents);
   return (
     <section className="filters">
       <input
         type="text"
         className="filters__event-search"
         value={searchValue}
-        onChange={event => setSearchValue(event.target.value)}
+        onChange={inputHandler}
         placeholder="Search an event..."
       />
       <Button
         buttonDisabled={false}
         text="Discover Free Events"
         cssClass="filters__free-events btn"
-        clickHandler={() => getFreeEvents(setFreeEvents)}
+        clickHandler={clickHandler}
       />
     </section>
   );

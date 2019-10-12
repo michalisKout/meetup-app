@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EventsWrapper from '../presentational/events/EventsWrapper';
+import Events from '../presentational/events/Events';
 import { getStoredEventIds } from '../../utils/storage-utils';
 import * as EventsAPI from '../../api/eventsAPI';
 
@@ -15,7 +15,7 @@ const MyEvents = () => {
     }
   }, []);
 
-  return <EventsWrapper cssClass="events--marginTop" eventsListData={eventsRegistrations} />;
+  return <Events cssClass="events--marginTop" eventsListData={eventsRegistrations} />;
 };
 
 export default MyEvents;

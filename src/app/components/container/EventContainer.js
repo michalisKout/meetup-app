@@ -8,7 +8,6 @@ import {
   EventRegistrationsContext,
 } from '../../utils/customHooks/event-hooks';
 import { useModalDisplay } from '../../utils/customHooks/toolkit-hooks';
-
 import EventUI from '../presentational/events/Event';
 
 const Event = ({ event }) => {
