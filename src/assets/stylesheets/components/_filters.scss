@@ -1,11 +1,10 @@
 .filters {
-  flex: 0.5 1 auto;
-  order: 2;
-  @include flex-config-container($justify: space-between);
-  padding: 0 5rem 0 5rem;
-
+  min-width: 100%;
+  @include flex-config-container($direction: column, $justify: space-between);
+  padding: 0 5rem;
+  margin-top: 10rem;
   &__event-search {
-    width: 100%;
+    width: 25%;
     height: 25px;
     border: 2px solid $light-blue;
     border-radius: 4px;
@@ -14,9 +13,17 @@
     }
   }
   &__free-events {
-    margin-left: 2rem;
+    width: 25%;
+    white-space: pre-wrap;
+    margin-top: 1rem;
     .free-text:hover {
       color: $green;
     }
+  }
+}
+
+@include media('<desktop') {
+  .filters {
+    padding: 0;
   }
 }

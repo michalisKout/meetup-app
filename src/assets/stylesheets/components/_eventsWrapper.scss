@@ -1,5 +1,20 @@
 .events {
+  display: block;
+  padding: 0 20%;
+  min-width: 300px;
   &-wrapper {
-    @include flex-config-container($direction: column, $align-items: flex-start);
+    display: block;
+  }
+}
+
+@include media('<desktop') {
+  .events {
+    padding: 0 5%;
+  }
+}
+
+@include media('<tablet') {
+  .events {
+    padding: 0 1%;
   }
 }
