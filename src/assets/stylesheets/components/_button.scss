@@ -12,15 +12,6 @@
   &:hover {
     background-color: $secondary-text-white;
     color: $deep-blue;
-    // span {
-    //   opacity: 0;
-    // }
-    // &:before {
-    //   color: black;
-    //   opacity: 1;
-    //   content: attr(data-hover);
-    //   transform: translate(-150%, 0);
-    // }
   }
   &:disabled {
     background-color: $grey-light;
