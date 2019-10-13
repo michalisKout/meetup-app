@@ -39,28 +39,14 @@ export const useEventsListData = () => {
   const { freeEvents } = useContext(FreeEventsContext);
 
   const [eventsListData, setEventsListData] = useState([]);
-  const [optimizedSearchLengthOnQuickTyping, setOptimizedSearchLengthOnQuickTyping] = useState(3);
+
   const searchValueIsEmpty = searchValue === '';
-
-  const isSearchValueOptimized = () => {
-    const searchValueLetterLength = searchValue.split('').length;
-    const hasTheRequiredLength = searchValueLetterLength >= optimizedSearchLengthOnQuickTyping;
-    if (hasTheRequiredLength) {
-      const dyncamicValidSearchLength =
-        optimizedSearchLengthOnQuickTyping + searchValue.split('').length;
-
-      setOptimizedSearchLengthOnQuickTyping(dyncamicValidSearchLength);
-    }
-
-    return hasTheRequiredLength;
-  };
 
   const searchForEvents = () => {
     const eventName = searchValue;
-    const isOptimizedAndValidInput =
-      eventName && EVENT_NAME_VALIDATION.test(eventName) && isSearchValueOptimized();
+    const isValidInput = eventName && EVENT_NAME_VALIDATION.test(eventName);
 
-    if (isOptimizedAndValidInput) {
+    if (isValidInput) {
       EventsAPI.updateEventsByName(setEventsListData, eventName);
     }
   };
@@ -79,7 +65,6 @@ export const useEventsListData = () => {
 
     return () => {
       isFetching = false;
-      setOptimizedSearchLengthOnQuickTyping(3);
     };
   }, [searchValue]);
 
