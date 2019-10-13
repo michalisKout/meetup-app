@@ -1,5 +1,6 @@
 .btn {
   @include font-config($size: 1.1rem, $weight: 700);
+  position: relative;
   padding: 0.5rem 1rem;
   color: $secondary-text-white;
   background-color: $deep-blue;
@@ -10,6 +11,15 @@
   &:hover {
     background-color: $secondary-text-white;
     color: $deep-blue;
+    // span {
+    //   opacity: 0;
+    // }
+    // &:before {
+    //   color: black;
+    //   opacity: 1;
+    //   content: attr(data-hover);
+    //   transform: translate(-150%, 0);
+    // }
   }
   &:disabled {
     background-color: $grey-light;
@@ -20,5 +30,28 @@
   }
   &:focus {
     outline: none;
+  }
+}
+
+.cancel {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0.5em;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+  }
+
+  &:before {
+    content: attr(data-hover);
+  }
+  &:hover span {
+    opacity: 0;
+  }
+
+  &:hover:before {
+    opacity: 1;
   }
 }

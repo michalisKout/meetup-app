@@ -27,6 +27,7 @@ const Event = ({
   const cityNameAndDuration = `${cityName} - ${`${eventDuration}h`}`;
   const buttonText = <span>{eventIsAlreadyRegistered ? YOU_ARE_IN : SIGNUP}</span>;
   const buttonClickHandler = eventIsAlreadyRegistered ? cancelHandler : toggleModalDisplay;
+  const cancelTextClass = eventIsAlreadyRegistered ? 'cancel' : '';
   return (
     <>
       <div className="event" role="listitem">
@@ -37,7 +38,7 @@ const Event = ({
           <Title text={name} isFree={isFree} />
           <div className="event__info__city-name">{cityNameAndDuration}</div>
         </div>
-        <Button cssClass="event__sign-up" clickHandler={buttonClickHandler}>
+        <Button cssClass={`event__sign-up ${cancelTextClass}`} clickHandler={buttonClickHandler}>
           {buttonText}
         </Button>
         {!eventIsAlreadyRegistered ? (
