@@ -4,11 +4,11 @@ import {
   SearchContext,
   FreeEventsContext,
   EventRegistrationsContext,
-  useEventSubScription,
+  useEventRegistration,
 } from '../../utils/customHooks/event-hooks';
 
 const FilterProviders = ({ children }) => {
-  const [eventIdRegistrations, setEventIdRegistrations] = useEventSubScription();
+  const [eventIdRegistrations, setEventIdRegistrations] = useEventRegistration();
   const [searchValue, setSearchValue] = useState('');
   const [freeEvents, setFreeEvents] = useState([]);
   return (

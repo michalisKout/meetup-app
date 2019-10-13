@@ -22,10 +22,11 @@ const EventFilters = () => {
       />
       <Button
         buttonDisabled={false}
-        text="Discover Free Events"
         cssClass="filters__free-events btn"
         clickHandler={clickHandler}
-      />
+      >
+        Discover Free Events
+      </Button>
     </section>
   );
 };

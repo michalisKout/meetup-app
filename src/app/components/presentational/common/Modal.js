@@ -28,16 +28,18 @@ const Modal = ({ titleText, text, closeHandler, display, submitHandler }) => {
             <div className="modal__content__buttons-container">
               <Button
                 buttonDisabled={false}
-                text="Cancel"
                 cssClass="modal__content__buttons-container__button"
                 clickHandler={closeHandler}
-              />
+              >
+                Cancel
+              </Button>
               <Button
                 buttonDisabled={false}
-                text="Join"
                 cssClass="modal__content__buttons-container__button"
                 clickHandler={submitHandler}
-              />
+              >
+                Join
+              </Button>
             </div>
           </div>
         </div>

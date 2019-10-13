@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ cssClass, text, clickHandler }) => {
+const Button = ({ cssClass, children, clickHandler }) => {
   return (
-    <button type="button" className={`${cssClass} btn`} onClick={clickHandler}>
-      {text}
+    <button type="button" data-hover="CANCEL" className={`${cssClass} btn`} onClick={clickHandler}>
+      {children}
     </button>
   );
 };
 
 Button.propTypes = {
   cssClass: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
   clickHandler: PropTypes.func.isRequired,
 };
 export default Button;

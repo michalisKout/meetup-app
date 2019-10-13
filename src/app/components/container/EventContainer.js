@@ -1,12 +1,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { getEventDuration, getEventStartTimeFromDate, getSignUpDate } from '../../utils/date-utils';
 
-import {
-  useEventCity,
-  useEventRegistrationCheck,
-  EventRegistrationsContext,
-} from '../../utils/customHooks/event-hooks';
+import { useEventCity, EventRegistrationsContext } from '../../utils/customHooks/event-hooks';
 import { useModalDisplay } from '../../utils/customHooks/toolkit-hooks';
 import EventUI from '../presentational/events/Event';
 
@@ -14,7 +11,9 @@ const Event = ({ event }) => {
   const { id, city, startDate, endDate, name } = event;
   const [displayModal, toggleModalDisplay] = useModalDisplay();
   const [eventIdRegistrations, setEventIdRegistrations] = useContext(EventRegistrationsContext);
-  const [eventIsAlreadyRegistered] = useEventRegistrationCheck(id);
+  const eventIsAlreadyRegistered = eventIdRegistrations.some(subEventId =>
+    _.isEqual(subEventId, id),
+  );
   const [cityData] = useEventCity(city);
 
   const getSingUpModalText = (eventName, date, cityName) => {
@@ -45,6 +44,14 @@ const Event = ({ event }) => {
     }
   };
 
+  const cancelHandler = () => {
+    const hasAtLeastAnEventRegistered = eventIdRegistrations && eventIdRegistrations.length > 0;
+    if (hasAtLeastAnEventRegistered) {
+      const eventIdRegistrationsUpdated = eventIdRegistrations.filter(eventId => eventId !== id);
+      setEventIdRegistrations(eventIdRegistrationsUpdated);
+    }
+  };
+
   const eventDisplayInfo = collectEventDisplayInfo(startDate, cityData, endDate);
 
   return (
@@ -54,6 +61,7 @@ const Event = ({ event }) => {
       eventIdRegistrations={eventIdRegistrations}
       setEventIdRegistrations={setEventIdRegistrations}
       signUpHandler={signUpHandler}
+      cancelHandler={cancelHandler}
       displayModal={displayModal}
       toggleModalDisplay={toggleModalDisplay}
       {...eventDisplayInfo}

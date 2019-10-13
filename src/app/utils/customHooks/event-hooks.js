@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import _ from 'lodash';
 import * as EventsAPI from '../../api/eventsAPI';
 
 const EVENT_NAME_VALIDATION = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
@@ -8,7 +7,7 @@ export const EventRegistrationsContext = createContext([]);
 export const SearchContext = createContext('');
 export const FreeEventsContext = createContext([]);
 
-export const useEventSubScription = () => {
+export const useEventRegistration = () => {
   const initRegistrationsId = JSON.parse(localStorage.getItem('eventIdRegistrationsStorage')) || [];
   const [eventIdRegistrations, setEventIdRegistrations] = useState(initRegistrationsId);
 
@@ -73,27 +72,10 @@ export const useEventsListData = () => {
   }, [searchValue]);
 
   useEffect(() => {
-    setEventsListData(freeEvents);
+    if (freeEvents.length > 0) setEventsListData(freeEvents);
   }, [freeEvents]);
 
   return [eventsListData, setEventsListData];
-};
-
-export const useEventRegistrationCheck = id => {
-  const [eventIsAlreadyRegistered, setEventIsAlreadyRegistered] = useState(false);
-
-  const [eventIdRegistrations] = useContext(EventRegistrationsContext);
-
-  useEffect(() => {
-    const hasRegistrationIds = eventIdRegistrations && eventIdRegistrations.length > 0;
-
-    if (hasRegistrationIds) {
-      const eventIdRegistered = eventIdRegistrations.some(subEventId => _.isEqual(subEventId, id));
-      setEventIsAlreadyRegistered(eventIdRegistered);
-    }
-  }, [eventIdRegistrations]);
-
-  return [eventIsAlreadyRegistered, setEventIsAlreadyRegistered];
 };
 
 export const useEventCity = cityId => {

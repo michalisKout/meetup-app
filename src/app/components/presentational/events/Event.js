@@ -20,12 +20,13 @@ const Event = ({
   toggleModalDisplay,
   eventIsAlreadyRegistered,
   signUpHandler,
+  cancelHandler,
 }) => {
   const { isFree, name } = event;
   const { YOU_ARE_IN, SIGNUP } = BUTTON;
   const cityNameAndDuration = `${cityName} - ${`${eventDuration}h`}`;
-  const buttonText = eventIsAlreadyRegistered ? YOU_ARE_IN : SIGNUP;
-
+  const buttonText = <span>{eventIsAlreadyRegistered ? YOU_ARE_IN : SIGNUP}</span>;
+  const buttonClickHandler = eventIsAlreadyRegistered ? cancelHandler : toggleModalDisplay;
   return (
     <>
       <div className="event" role="listitem">
@@ -36,11 +37,9 @@ const Event = ({
           <Title text={name} isFree={isFree} />
           <div className="event__info__city-name">{cityNameAndDuration}</div>
         </div>
-        <Button
-          cssClass="event__sign-up"
-          text={buttonText}
-          clickHandler={!eventIsAlreadyRegistered ? toggleModalDisplay : () => true}
-        />
+        <Button cssClass="event__sign-up" clickHandler={buttonClickHandler}>
+          {buttonText}
+        </Button>
         {!eventIsAlreadyRegistered ? (
           <Modal
             titleText={TITLE_TEXT}
@@ -56,6 +55,7 @@ const Event = ({
 };
 
 Event.propTypes = {
+  cancelHandler: PropTypes.func.isRequired,
   signUpHandler: PropTypes.func.isRequired,
   eventIsAlreadyRegistered: PropTypes.bool.isRequired,
   displayModal: PropTypes.bool.isRequired,
