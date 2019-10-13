@@ -27,6 +27,7 @@ describe('Event Component', () => {
       toggleModalDisplay: () => true,
       eventIsAlreadyRegistered: true,
       signUpHandler: () => true,
+      cancelHandler: () => true,
     };
 
     const component = renderer.create(<Event {...props} />);

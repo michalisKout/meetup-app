@@ -3,9 +3,10 @@
 exports[`Button Component should match snapshot including default props 1`] = `
 <button
   className="event__sing-up btn"
+  data-hover="Cancel"
   onClick={[Function]}
   type="button"
 >
-  test button
+  test text
 </button>
 `;

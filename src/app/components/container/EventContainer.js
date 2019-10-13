@@ -1,19 +1,18 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { getEventDuration, getEventStartTimeFromDate, getSignUpDate } from '../../utils/date-utils';
+import { getEventDuration, getEventStartTimeFromDate, getSignUpDate } from '../../utils/dateUtils';
 
 import { useEventCity, EventRegistrationsContext } from '../../utils/customHooks/event-hooks';
-import { useModalDisplay } from '../../utils/customHooks/toolkit-hooks';
+import { useModalDisplay } from '../../utils/customHooks/modal-hooks';
 import EventUI from '../presentational/events/Event';
 
 const Event = ({ event }) => {
   const { id, city, startDate, endDate, name } = event;
   const [displayModal, toggleModalDisplay] = useModalDisplay();
   const [eventIdRegistrations, setEventIdRegistrations] = useContext(EventRegistrationsContext);
-  const eventIsAlreadyRegistered = eventIdRegistrations.some(subEventId =>
-    _.isEqual(subEventId, id),
-  );
+  const eventIsAlreadyRegistered =
+    eventIdRegistrations && eventIdRegistrations.some(subEventId => _.isEqual(subEventId, id));
   const [cityData] = useEventCity(city);
 
   const getSingUpModalText = (eventName, date, cityName) => {

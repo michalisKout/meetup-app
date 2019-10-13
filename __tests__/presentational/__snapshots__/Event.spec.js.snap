@@ -32,11 +32,14 @@ exports[`Event Component should match snapshot 1`] = `
     </div>
   </div>
   <button
-    className="event__sign-up btn"
+    className="event__sign-up cancel btn"
+    data-hover="Cancel"
     onClick={[Function]}
     type="button"
   >
-    You're in
+    <span>
+      You're in
+    </span>
   </button>
 </div>
 `;

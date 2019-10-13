@@ -50,6 +50,7 @@ function renderAllEventsContainerWithFreeContext() {
     toggleModalDisplay: () => true,
     eventIsAlreadyRegistered: true,
     signUpHandler: () => true,
+    cancelHandler: () => true,
   };
   return render(
     <FreeEventsContext.Provider value={{ freeEvents, setFreeEvents: () => true }}>

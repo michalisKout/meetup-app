@@ -10,10 +10,9 @@ describe('Button Component', () => {
   it('should match snapshot including default props', () => {
     const props = {
       cssClass: 'event__sing-up',
-      text: 'test button',
       clickHandler: () => true,
     };
-    const component = renderer.create(<Button {...props} />);
+    const component = renderer.create(<Button {...props}>test text</Button>);
 
     const componentTree = component.toJSON();
 

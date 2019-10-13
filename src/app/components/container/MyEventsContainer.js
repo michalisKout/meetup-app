@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Events from '../presentational/events/Events';
-import { getStoredEventIds } from '../../utils/storage-utils';
+import { getStoredEventIds } from '../../utils/storageUtils';
 import * as EventsAPI from '../../api/eventsAPI';
 
 const MyEvents = () => {

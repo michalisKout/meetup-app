@@ -45,11 +45,14 @@ Array [
           </div>
         </div>
         <button
-          className="event__sign-up btn"
+          className="event__sign-up cancel btn"
+          data-hover="Cancel"
           onClick={[Function]}
           type="button"
         >
-          Sign up
+          <span>
+            You're in
+          </span>
         </button>
       </div>
       <div
@@ -83,11 +86,14 @@ Array [
           </div>
         </div>
         <button
-          className="event__sign-up btn"
+          className="event__sign-up  btn"
+          data-hover="Cancel"
           onClick={[Function]}
           type="button"
         >
-          Sign up
+          <span>
+            Sign up
+          </span>
         </button>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import EventsDataTransformer from './EventsDataTransformer';
-import { constructErrorMessage } from '../utils/error-utils';
+import { constructErrorMessage } from '../utils/errorUtils';
 import axios from './axios.instance';
 
 const EVENTS_RESOURCE = 'events';

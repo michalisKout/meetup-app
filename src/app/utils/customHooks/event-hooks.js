@@ -72,7 +72,8 @@ export const useEventsListData = () => {
   }, [searchValue]);
 
   useEffect(() => {
-    if (freeEvents.length > 0) setEventsListData(freeEvents);
+    const hasFreeEvents = freeEvents && freeEvents.length > 0;
+    if (hasFreeEvents) setEventsListData(freeEvents);
   }, [freeEvents]);
 
   return [eventsListData, setEventsListData];

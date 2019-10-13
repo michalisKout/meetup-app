@@ -1,11 +1,14 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { cleanup } from '@testing-library/react';
+import TestRenderer from 'react-test-renderer';
 import EventsPerDay from '../../src/app/components/presentational/events/EventsPerDay';
+import { EventRegistrationsContext } from '../../src/app/utils/customHooks/event-hooks';
+import '@testing-library/jest-dom/extend-expect';
 
 beforeEach(() => {
   jest.resetModules();
 });
-
+afterEach(cleanup);
 describe('EventsPerDay Component', () => {
   it('should match snapshot including default props', () => {
     const firstMondayJuneEvent = {
@@ -29,38 +32,14 @@ describe('EventsPerDay Component', () => {
       date: 'Monday 29th June',
       events: dayEvents,
     };
-    const component = renderer.create(<EventsPerDay {...props} />);
+    const component = TestRenderer.create(
+      <EventRegistrationsContext.Provider value={[[0], () => true]}>
+        <EventsPerDay {...props} />
+      </EventRegistrationsContext.Provider>,
+    );
 
     const componentTree = component.toJSON();
 
     expect(componentTree).toMatchSnapshot();
   });
-
-  // it('should open modal for first event', () => {
-  //   const firstMondayJuneEvent = {
-  //     id: 0,
-  //     isFree: false,
-  //     name: 'firstTestEvent',
-  //     city: 1,
-  //     startDate: '2019-07-14T15:00:00+00:00',
-  //     endDate: 'Thu Jan 01 1970',
-  //   };
-  //   const secondMondayJuneEvent = {
-  //     id: 1,
-  //     isFree: false,
-  //     name: 'secondTestEvent',
-  //     city: 1,
-  //     startDate: '2019-07-14T17:00:00+00:00',
-  //     endDate: 'Thu Jan 01 1970',
-  //   };
-  //   const dayEvents = [firstMondayJuneEvent, secondMondayJuneEvent];
-  //   const props = {
-  //     date: 'Monday 29th June',
-  //     events: dayEvents,
-  //   };
-  //   const { getByText } = render(<EventsPerDay {...props} />);
-  //   fireEvent.click(getByText(/Sign Up/i));
-
-  //   expect(getByText(//)).toMatchSnapshot();
-  // });
 });
