@@ -46,3 +46,4 @@ _Assigment Notes_:
 - There are no unit tests for the api because we already using a mocked api with static data.
 - HashRouter used instead of Router for supporting deployment on a static site genarator like Netlify.
 - EventsDataTransformer is not tested because is an adhoc solution due to lack of aggregations in the mock API server.
+- Tests aren't complete (1 failing test on api test) due to lack of time.
