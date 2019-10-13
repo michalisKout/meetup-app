@@ -30,7 +30,7 @@ export const useEventRegistration = () => {
   useEffect(() => {
     registerEventToList();
   }, [eventIdRegistrations]);
-  console.log('check registration');
+
   return [eventIdRegistrations, dispatchEventId];
 };
 
@@ -76,7 +76,7 @@ export const useEventsListData = () => {
         EventsAPI.getEventsByDate(setEventsListData);
       }
     }
-    console.log('check search');
+
     return () => {
       isFetching = false;
       setOptimizedSearchLengthOnQuickTyping(3);
@@ -86,7 +86,6 @@ export const useEventsListData = () => {
   useEffect(() => {
     const hasFreeEvents = freeEvents && freeEvents.length > 0;
     if (hasFreeEvents) setEventsListData(freeEvents);
-    console.log('check freeevents');
   }, [freeEvents]);
 
   return [eventsListData, setEventsListData];
@@ -104,7 +103,6 @@ export const useEventCity = cityId => {
     if (cityId && cityCleanup) {
       EventsAPI.getCityEventById(cityId, setCityData);
     }
-    console.log('check city');
 
     return () => (cityCleanup = false);
   }, [cityId]);

@@ -15,7 +15,6 @@ const MyEvents = () => {
     if (hasStoredEventIds) {
       EventsAPI.getEventsByIdSortedByDate(setStoredEvents, eventIdRegistrations);
     }
-    console.log('check');
   }, [eventIdRegistrations]);
 
   return <Events cssClass="marginTop" eventsListData={storedEvents} />;
