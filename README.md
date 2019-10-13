@@ -21,16 +21,27 @@ This is an assignment for creating a meetup-like web app for trivago.
 
     - Container/Presentational pattern is used for the react part.
     - 7-1 design pattern is used for stylesheets.
+    - BEM using sass.
 
 > **Delivery Process - Trello board [Link](https://trello.com/b/Vd9rnbZM/trivago-challenge)**
 
 > **CI/CD Site Deploy - [Link](https://happy-visvesvaraya-d5d3bd.netlify.com)**
 
+> **How to Execute**
+
+- Specify the node version. You can run "nvm use" for this step.
+- Install node_modules using "npm i"
+- Run in Developement mode: "npm start"
+- Production build: "npm build"
+- Setup Mock API with json-server: "npm run mock:api"
+- Run tests/ export coverage statistics: "npm test" / "npm run test:coverage"
+
 _Assigment Notes_:
 
+- I am not confident, yet, in using typescript's features because I have not studied them enough yet. I used prop-types dependency instead to simulate type strict rules.
 - Clean Code principles applied across the codebase.
+- Accessibility.
 - All dependencies have been set to bugfix versions updates only to keep the consistency of workflow across all dependencies.
-- I am not confident in using typescript's features because I have not studied them enough yet. I used prop-types dependency instead.
 - I have not used react-app boilerplate. The webpack, jest and eslint configurations are customized by me. This way the app is **lightweight**, more **flexible** on handling error cases and more **scalable**.
 - There are no unit tests for the api because we already using a mocked api with static data.
 - HashRouter used instead of Router for supporting deployment on a static site genarator like Netlify.
