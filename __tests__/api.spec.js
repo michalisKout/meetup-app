@@ -20,7 +20,7 @@ describe('EventAPI', () => {
       json: () => mockServerResponse,
     });
     jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
-    EventAPI.getAllEvents();
+    EventAPI.updateAllEvents();
 
     expect(axios.get).toHaveBeenCalledTimes(1);
     expect(axios.get).toHaveBeenCalledWith('events');
@@ -42,7 +42,7 @@ describe('EventAPI', () => {
       json: () => mockServerResponse,
     });
     jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
-    EventAPI.getCityEventById(1);
+    EventAPI.updateCityEventById(1);
 
     expect(axios.get).toHaveBeenCalledTimes(2);
 
@@ -75,7 +75,7 @@ describe('EventAPI', () => {
       json: () => mockServerResponse,
     });
     jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
-    EventAPI.getEventsByDate(() => true);
+    EventAPI.updateEventsByDate(() => true);
 
     expect(axios.get).toHaveBeenCalledTimes(3);
 

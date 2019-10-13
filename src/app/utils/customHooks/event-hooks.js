@@ -61,7 +61,7 @@ export const useEventsListData = () => {
       eventName && EVENT_NAME_VALIDATION.test(eventName) && isSearchValueOptimized();
 
     if (isOptimizedAndValidInput) {
-      EventsAPI.getEventsByName(setEventsListData, eventName);
+      EventsAPI.updateEventsByName(setEventsListData, eventName);
     }
   };
 
@@ -73,7 +73,7 @@ export const useEventsListData = () => {
       }
 
       if (searchValueIsEmpty) {
-        EventsAPI.getEventsByDate(setEventsListData);
+        EventsAPI.updateEventsByDate(setEventsListData);
       }
     }
 
@@ -101,7 +101,7 @@ export const useEventCity = cityId => {
   useEffect(() => {
     let cityCleanup = true;
     if (cityId && cityCleanup) {
-      EventsAPI.getCityEventById(cityId, setCityData);
+      EventsAPI.updateCityEventById(cityId, setCityData);
     }
 
     return () => (cityCleanup = false);

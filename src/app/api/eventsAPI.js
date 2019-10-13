@@ -14,48 +14,48 @@ const updateStateWithTransformedResponseData = (eventsResponse, setHookHandler) 
   setHookHandler(transformer.eventsListGroupedByDay);
 };
 
-const eventsResponseHandler = async (stateHandler, queryParams) => {
+const eventsResponseHandler = async (eventStateHandler, queryParams) => {
   try {
     const eventsResponse = await getAPIResponseWithQuery(queryParams);
 
-    updateStateWithTransformedResponseData(eventsResponse, stateHandler);
+    updateStateWithTransformedResponseData(eventsResponse, eventStateHandler);
   } catch (error) {
     throw new Error(constructErrorMessage(`${getApiErrorMessage(EVENTS_RESOURCE)}, ${error}`));
   }
 };
 
-export const getAllEvents = stateHandler => {
-  eventsResponseHandler(stateHandler, '');
+export const updateAllEvents = eventStateHandler => {
+  eventsResponseHandler(eventStateHandler, '');
 };
 
-export const getEventsByName = (stateHandler, eventName) => {
+export const updateEventsByName = (eventStateHandler, eventName) => {
   const eventsByNameQuery = `?name_like=${eventName}&${SORT_BY_DATE_QUERY}`;
-  eventsResponseHandler(stateHandler, eventsByNameQuery);
+  eventsResponseHandler(eventStateHandler, eventsByNameQuery);
 };
 
-export const getEventsByIdSortedByDate = (stateHandler, eventIdList) => {
+export const updateEventsByIdSortedByDate = (eventStateHandler, eventIdList) => {
   const hasEventIds = eventIdList.length > 0;
   if (hasEventIds) {
     const bindedQueryParameters = eventIdList.map(eventId => `id=${eventId}`).join('&');
     const eventsByIdQuery = `?${bindedQueryParameters}&${SORT_BY_DATE_QUERY}`;
 
-    eventsResponseHandler(stateHandler, eventsByIdQuery);
+    eventsResponseHandler(eventStateHandler, eventsByIdQuery);
   } else {
-    stateHandler([]);
+    eventStateHandler([]);
   }
 };
 
-export const getFreeEvents = stateHandler => {
+export const updateFreeEvents = eventStateHandler => {
   const freeEventsQuery = `?isFree=true&${SORT_BY_DATE_QUERY}`;
-  eventsResponseHandler(stateHandler, freeEventsQuery);
+  eventsResponseHandler(eventStateHandler, freeEventsQuery);
 };
 
-export const getEventsByDate = stateHandler => {
+export const updateEventsByDate = eventStateHandler => {
   const eventsByDateQuery = `?${SORT_BY_DATE_QUERY}`;
-  eventsResponseHandler(stateHandler, eventsByDateQuery);
+  eventsResponseHandler(eventStateHandler, eventsByDateQuery);
 };
 
-export const getCityEventById = async (cityId, cityHandler) => {
+export const updateCityEventById = async (cityId, cityHandler) => {
   const urlToFetch = `${CITIES_RESOURCE}/${cityId}`;
   try {
     const city = await axios.get(urlToFetch);

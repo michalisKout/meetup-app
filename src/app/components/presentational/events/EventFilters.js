@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import Button from '../common/Button';
-import { getFreeEvents } from '../../../api/eventsAPI';
+import { updateFreeEvents } from '../../../api/eventsAPI';
 import { SearchContext, FreeEventsContext } from '../../../utils/customHooks/event-hooks';
 
 const EventFilters = () => {
   const { searchValue, setSearchValue } = useContext(SearchContext);
   const { setFreeEvents } = useContext(FreeEventsContext);
   const inputHandler = event => setSearchValue(event.target.value);
-  const clickHandler = () => getFreeEvents(setFreeEvents);
+  const clickHandler = () => updateFreeEvents(setFreeEvents);
 
   return (
     <section className="filters">

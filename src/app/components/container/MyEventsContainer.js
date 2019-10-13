@@ -13,7 +13,7 @@ const MyEvents = () => {
     const hasStoredEventIds = storedEventIds.length > 0;
 
     if (hasStoredEventIds) {
-      EventsAPI.getEventsByIdSortedByDate(setStoredEvents, eventIdRegistrations);
+      EventsAPI.updateEventsByIdSortedByDate(setStoredEvents, eventIdRegistrations);
     }
   }, [eventIdRegistrations]);
 
