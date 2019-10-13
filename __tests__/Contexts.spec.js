@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import { SearchContext, FreeEventsContext } from '../src/app/utils/customHooks/event-hooks';
 import AllEventsContainer from '../src/app/components/container/AllEventsContainer';
 import '@testing-library/jest-dom/extend-expect';
+import Event from '../src/app/components/presentational/events/Event';
 
 function renderAllEventsContainerWithSearchContext() {
   return render(
@@ -29,10 +30,30 @@ function renderAllEventsContainerWithFreeContext() {
     startDate: '2019-07-14T17:00:00+00:00',
     endDate: 'Thu Jan 01 1970',
   };
-  const freeEvents = [[firstMondayJuneEvent, secondMondayJuneEvent]];
+  const freeEvents = [firstMondayJuneEvent, secondMondayJuneEvent];
+  const event = {
+    id: 0,
+    isFree: false,
+    name: 'testEvent',
+    city: 1,
+    startDate: new Date().toDateString(),
+    endDate: new Date(1).toDateString(),
+  };
+
+  const props = {
+    event,
+    eventStartTime: '19:00',
+    eventDuration: 1,
+    cityName: 'Mallorca',
+    singUpModalText: 'This is a test modal',
+    displayModal: true,
+    toggleModalDisplay: () => true,
+    eventIsAlreadyRegistered: true,
+    signUpHandler: () => true,
+  };
   return render(
     <FreeEventsContext.Provider value={{ freeEvents, setFreeEvents: () => true }}>
-      <AllEventsContainer />
+      <Event {...props} />
     </FreeEventsContext.Provider>,
   );
 }
@@ -51,7 +72,6 @@ describe('SearchContext', () => {
 describe('FreeContext', () => {
   it('should have freeEvents value', () => {
     const { getByText } = renderAllEventsContainerWithFreeContext();
-    expect(getByText(/firstTestEvent/i)).toBeInTheDocument();
-    expect(getByText(/secondTestEvent/i)).toBeInTheDocument();
+    expect(getByText(/19.00/i)).toBeInTheDocument();
   });
 });

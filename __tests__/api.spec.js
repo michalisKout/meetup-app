@@ -1,23 +1,84 @@
-// import sinon, { before, after } from 'sinon';
-// import { getAllUnRegisteredEvents, getEventsByDate } from '../src/app/api/events';
+import axios from '../src/app/api/axios.instance';
+import * as EventAPI from '../src/app/api/eventsAPI';
 
-const axios = {
-  get: jest.fn(() => Promise.resolve({ data: { name: 'test' } })),
-};
+describe('EventAPI', () => {
+  it('should send request to get events as response', done => {
+    const mockSuccessResponse = {
+      events: [
+        {
+          id: 0,
+          isFree: true,
+          name: 'CSS Grids: fact or fiction',
+          city: 9,
+          startDate: '2019-07-14T02:00:00+00:00',
+          endDate: '2019-07-14T03:00:00+00:00',
+        },
+      ],
+    };
+    const mockServerResponse = Promise.resolve(mockSuccessResponse);
+    const mockFetchPromise = Promise.resolve({
+      json: () => mockServerResponse,
+    });
+    jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
+    EventAPI.getAllEvents();
 
-describe('axios', () => {
-  it('should get data', async () => {
-    const data = await axios.get();
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith('events');
 
-    expect(data).toBeDefined();
+    done();
+  });
+
+  it('should send request to get city as second response', done => {
+    const mockSuccessResponse = {
+      cities: [
+        {
+          id: 1,
+          name: 'Barcelona',
+        },
+      ],
+    };
+    const mockServerResponse = Promise.resolve(mockSuccessResponse);
+    const mockFetchPromise = Promise.resolve({
+      json: () => mockServerResponse,
+    });
+    jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
+    EventAPI.getCityEventById(1);
+
+    expect(axios.get).toHaveBeenCalledTimes(2);
+
+    done();
+  });
+
+  it('should send request to get events grouped by day as third response', done => {
+    const mockSuccessResponse = {
+      events: [
+        {
+          id: 0,
+          isFree: true,
+          name: 'CSS Grids: fact or fiction',
+          city: 9,
+          startDate: '2019-07-14T02:00:00+00:00',
+          endDate: '2019-07-14T03:00:00+00:00',
+        },
+        {
+          id: 1,
+          isFree: true,
+          name: 'CSS Grids: fact or fiction',
+          city: 8,
+          startDate: '2019-07-14T02:00:00+00:00',
+          endDate: '2019-07-14T03:00:00+00:00',
+        },
+      ],
+    };
+    const mockServerResponse = Promise.resolve(mockSuccessResponse);
+    const mockFetchPromise = Promise.resolve({
+      json: () => mockServerResponse,
+    });
+    jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
+    EventAPI.getEventsByDate(() => true);
+
+    expect(axios.get).toHaveBeenCalledTimes(3);
+
+    done();
   });
 });
-
-// WORKAROUND TO TRIGGER USEEFFECT HOOK
-// const Comp = () => {
-//   useEffect(() => console.log('effect'));
-//   return null;
-// }
-
-// const tree = renderer.create(<Comp />); // nothing logged
-// tree.update(); // console.log => 'effect'
