@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getDate } from '../../../utils/dateUtils';
+import { getDate } from '../../../helpers/date-helper';
 import EventsPerDay from './EventsPerDay';
 
 const Events = ({ eventsListData, cssClass }) => {

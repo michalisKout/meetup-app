@@ -5,7 +5,7 @@ import {
   FreeEventsContext,
   EventRegistrationsContext,
   useEventRegistration,
-} from '../../utils/customHooks/event-hooks';
+} from '../../hooks/event-hooks';
 
 const FilterProviders = ({ children }) => {
   const [eventIdRegistrations, dispatchEventId] = useEventRegistration();

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Button from '../common/Button';
 import { updateFreeEvents } from '../../../api/eventsAPI';
-import { SearchContext, FreeEventsContext } from '../../../utils/customHooks/event-hooks';
+import { SearchContext, FreeEventsContext } from '../../../hooks/event-hooks';
 
 const EventFilters = () => {
   const { searchValue, setSearchValue } = useContext(SearchContext);

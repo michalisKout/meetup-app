@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Events from '../presentational/events/Events';
-import { useEventsListData } from '../../utils/customHooks/event-hooks';
+import { useEventsListData } from '../../hooks/event-hooks';
 import EventFilters from '../presentational/events/EventFilters';
 
 export default function AllEventsContainer() {

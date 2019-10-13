@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { constructErrorMessage } from '../utils/errorUtils';
+import { constructErrorMessage } from '../helpers/error-helper';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {

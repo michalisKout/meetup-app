@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Events from '../presentational/events/Events';
-import { getStoredEventIds } from '../../utils/storageUtils';
+import { getStoredEventIds } from '../../helpers/storage-helper';
 import * as EventsAPI from '../../api/eventsAPI';
-import { EventRegistrationsContext } from '../../utils/customHooks/event-hooks';
+import { EventRegistrationsContext } from '../../hooks/event-hooks';
 
 const MyEvents = () => {
   const [storedEvents, setStoredEvents] = useState([]);

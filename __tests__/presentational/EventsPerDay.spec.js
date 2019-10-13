@@ -2,7 +2,7 @@ import React from 'react';
 import { cleanup } from '@testing-library/react';
 import TestRenderer from 'react-test-renderer';
 import EventsPerDay from '../../src/app/components/presentational/events/EventsPerDay';
-import { EventRegistrationsContext } from '../../src/app/utils/customHooks/event-hooks';
+import { EventRegistrationsContext } from '../../src/app/hooks/event-hooks';
 import '@testing-library/jest-dom/extend-expect';
 
 beforeEach(() => {

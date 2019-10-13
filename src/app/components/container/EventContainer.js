@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { getEventDuration, getEventStartTimeFromDate, getSignUpDate } from '../../utils/dateUtils';
-
-import { useEventCity, EventRegistrationsContext } from '../../utils/customHooks/event-hooks';
-import { useModalDisplay } from '../../utils/customHooks/modal-hooks';
+import {
+  getEventDuration,
+  getEventStartTimeFromDate,
+  getSignUpDate,
+} from '../../helpers/date-helper';
+import { useEventCity, EventRegistrationsContext } from '../../hooks/event-hooks';
+import { useModalDisplay } from '../../hooks/modal-hooks';
 import EventUI from '../presentational/events/Event';
 
 const Event = ({ event }) => {

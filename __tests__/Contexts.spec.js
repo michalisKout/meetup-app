@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { SearchContext, FreeEventsContext } from '../src/app/utils/customHooks/event-hooks';
+import { SearchContext, FreeEventsContext } from '../src/app/hooks/event-hooks';
 import AllEventsContainer from '../src/app/components/container/AllEventsContainer';
 import '@testing-library/jest-dom/extend-expect';
 import Event from '../src/app/components/presentational/events/Event';

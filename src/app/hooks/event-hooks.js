@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext, useReducer } from 'react';
-import * as EventsAPI from '../../api/eventsAPI';
+import * as EventsAPI from '../api/eventsAPI';
 
 const EVENT_NAME_VALIDATION = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
 
