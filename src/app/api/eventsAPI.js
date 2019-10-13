@@ -34,9 +34,15 @@ export const getEventsByName = (stateHandler, eventName) => {
 };
 
 export const getEventsByIdSortedByDate = (stateHandler, eventIdList) => {
-  const bindedQueryParameters = eventIdList.map(eventId => `id=${eventId}`).join('&');
-  const eventsByIdQuery = `?${bindedQueryParameters}&${SORT_BY_DATE_QUERY}`;
-  eventsResponseHandler(stateHandler, eventsByIdQuery);
+  const hasEventIds = eventIdList.length > 0;
+  if (hasEventIds) {
+    const bindedQueryParameters = eventIdList.map(eventId => `id=${eventId}`).join('&');
+    const eventsByIdQuery = `?${bindedQueryParameters}&${SORT_BY_DATE_QUERY}`;
+
+    eventsResponseHandler(stateHandler, eventsByIdQuery);
+  } else {
+    stateHandler([]);
+  }
 };
 
 export const getFreeEvents = stateHandler => {

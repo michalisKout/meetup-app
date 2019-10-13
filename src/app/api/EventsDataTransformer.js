@@ -24,7 +24,6 @@ class EventsDataTransformer {
   transformEventsDataToGroupedList(events) {
     const groupedEvents = this.groupByDateOption(events);
     const groupedEventsListed = Object.values(groupedEvents);
-
     return groupedEventsListed;
   }
 }
