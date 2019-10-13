@@ -8,6 +8,7 @@
   border-radius: 4px;
   transition: all 0.5s;
   white-space: nowrap;
+  z-index: 0;
   &:hover {
     background-color: $secondary-text-white;
     color: $deep-blue;
