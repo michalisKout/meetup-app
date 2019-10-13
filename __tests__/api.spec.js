@@ -1,26 +1,32 @@
+import { cleanup } from '@testing-library/react';
 import axios from '../src/app/api/axios.instance';
 import * as EventAPI from '../src/app/api/eventsAPI';
 
+beforeEach(() => {
+  jest.resetModules();
+});
+
+afterEach(cleanup);
+
 describe('EventAPI', () => {
   it('should send request to get events as response', done => {
-    const mockSuccessResponse = {
-      events: [
-        {
-          id: 0,
-          isFree: true,
-          name: 'CSS Grids: fact or fiction',
-          city: 9,
-          startDate: '2019-07-14T02:00:00+00:00',
-          endDate: '2019-07-14T03:00:00+00:00',
-        },
-      ],
-    };
+    const mockSuccessResponse = [
+      {
+        id: 0,
+        isFree: true,
+        name: 'CSS Grids: fact or fiction',
+        city: 9,
+        startDate: '2019-07-14T02:00:00+00:00',
+        endDate: '2019-07-14T03:00:00+00:00',
+      },
+    ];
+
     const mockServerResponse = Promise.resolve(mockSuccessResponse);
     const mockFetchPromise = Promise.resolve({
       json: () => mockServerResponse,
     });
     jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
-    EventAPI.updateAllEvents();
+    EventAPI.updateAllEvents(() => true);
 
     expect(axios.get).toHaveBeenCalledTimes(1);
     expect(axios.get).toHaveBeenCalledWith('events');
@@ -42,7 +48,7 @@ describe('EventAPI', () => {
       json: () => mockServerResponse,
     });
     jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
-    EventAPI.updateCityEventById(1);
+    EventAPI.updateCitiesEventById(() => true);
 
     expect(axios.get).toHaveBeenCalledTimes(2);
 

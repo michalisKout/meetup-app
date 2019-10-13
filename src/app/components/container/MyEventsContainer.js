@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import Events from '../presentational/events/Events';
 import { getStoredEventIds } from '../../helpers/storage-helper';
 import * as EventsAPI from '../../api/eventsAPI';
-import { EventRegistrationsContext } from '../../hooks/event-hooks';
+import { EventRegistrationsContext, useEventsCities } from '../../hooks/event-hooks';
 
 const MyEvents = () => {
   const [storedEvents, setStoredEvents] = useState([]);
   const [eventIdRegistrations] = useContext(EventRegistrationsContext);
+  const [cityDataList] = useEventsCities();
 
   useEffect(() => {
     const storedEventIds = getStoredEventIds();
@@ -17,7 +18,9 @@ const MyEvents = () => {
     }
   }, [eventIdRegistrations]);
 
-  return <Events cssClass="marginTop" eventsListData={storedEvents} />;
+  return (
+    <Events cssClass="marginTop" eventsListData={storedEvents} cityDataList={cityDataList || []} />
+  );
 };
 
 export default MyEvents;

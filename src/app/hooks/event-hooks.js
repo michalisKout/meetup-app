@@ -76,7 +76,7 @@ export const useEventsListData = () => {
   return [eventsListData, setEventsListData];
 };
 
-export const useEventCity = cityId => {
+export const useEventCity = (cityId, citiesList = []) => {
   const initCityData = {
     id: 0,
     name: '',
@@ -84,13 +84,21 @@ export const useEventCity = cityId => {
 
   const [cityData, setCityData] = useState(initCityData);
   useEffect(() => {
-    let cityCleanup = true;
-    if (cityId && cityCleanup) {
-      EventsAPI.updateCityEventById(cityId, setCityData);
+    if (cityId && citiesList.length > 0) {
+      setCityData(citiesList.find(city => city.id === cityId));
     }
-
-    return () => (cityCleanup = false);
-  }, [cityId]);
+  }, [citiesList]);
 
   return [cityData, setCityData];
+};
+
+export const useEventsCities = () => {
+  const initCityData = [];
+
+  const [cityDataList, setCityDataList] = useState(initCityData);
+  useEffect(() => {
+    EventsAPI.updateCitiesEventById(setCityDataList);
+  }, []);
+
+  return [cityDataList, setCityDataList];
 };

@@ -31,6 +31,7 @@ describe('EventsPerDay Component', () => {
     const props = {
       date: 'Monday 29th June',
       events: dayEvents,
+      cityDataList: [],
     };
     const component = TestRenderer.create(
       <EventRegistrationsContext.Provider value={[[0], () => true]}>

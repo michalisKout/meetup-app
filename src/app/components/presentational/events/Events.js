@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import { getDate } from '../../../helpers/date-helper';
 import EventsPerDay from './EventsPerDay';
 
-const Events = ({ eventsListData, cssClass }) => {
-  const getEventPerDay = (eventsList, index) => {
+const Events = ({ eventsListData, cssClass, cityDataList }) => {
+  const getEventsPerDay = (eventsList, index) => {
     const dayHasEvents = eventsList.length !== 0;
     const date = dayHasEvents && getDate(eventsList[0].startDate);
     const key = `events-wrapper-${index}`;
     return (
       <div key={key} className="events-wrapper" role="list">
-        <EventsPerDay date={date} events={eventsList} />
+        <EventsPerDay cityDataList={cityDataList} date={date} events={eventsList} />
       </div>
     );
   };
 
   const shouldDisplayEventsPerDay = eventsListData.length !== 0;
-  const eventsPerDay = shouldDisplayEventsPerDay ? eventsListData.map(getEventPerDay) : null;
+  const eventsPerDay = shouldDisplayEventsPerDay ? eventsListData.map(getEventsPerDay) : null;
 
   return (
     <>
@@ -26,6 +26,7 @@ const Events = ({ eventsListData, cssClass }) => {
 };
 
 Events.propTypes = {
+  cityDataList: PropTypes.array.isRequired,
   cssClass: PropTypes.string.isRequired,
   eventsListData: PropTypes.arrayOf(
     PropTypes.arrayOf(

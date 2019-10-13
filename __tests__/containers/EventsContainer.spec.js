@@ -1,8 +1,14 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import axios from '../../src/app/api/axios.instance';
+import TestRenderer from 'react-test-renderer';
+import { cleanup } from '@testing-library/react';
+import axios from 'axios';
 import AllEventsContainer from '../../src/app/components/container/AllEventsContainer';
 
+beforeEach(() => {
+  jest.resetModules();
+});
+
+afterEach(cleanup);
 describe('AllEventsContainer', () => {
   it('should render container without events included', done => {
     const mockSuccessResponse = {
@@ -22,11 +28,14 @@ describe('AllEventsContainer', () => {
       json: () => mockJsonPromise,
     });
     jest.spyOn(axios, 'get').mockImplementation(() => mockFetchPromise);
-    const wrapper = mount(<AllEventsContainer />);
+
+    const container = TestRenderer.create(<AllEventsContainer />);
 
     expect(axios.get).toHaveBeenCalledTimes(0);
 
-    expect(wrapper.find('.events-wrapper')).toEqual({});
+    const containerTree = container.toJSON();
+
+    expect(containerTree).toMatchSnapshot();
     done();
   });
 });

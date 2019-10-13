@@ -55,11 +55,11 @@ export const updateEventsByDate = eventStateHandler => {
   eventsResponseHandler(eventStateHandler, eventsByDateQuery);
 };
 
-export const updateCityEventById = async (cityId, cityHandler) => {
-  const urlToFetch = `${CITIES_RESOURCE}/${cityId}`;
+export const updateCitiesEventById = async citiesHandler => {
+  const urlToFetch = `${CITIES_RESOURCE}`;
   try {
-    const city = await axios.get(urlToFetch);
-    cityHandler(city.data);
+    const cities = await axios.get(urlToFetch);
+    citiesHandler(cities.data);
   } catch (e) {
     throw new Error(constructErrorMessage(getApiErrorMessage(CITIES_RESOURCE)));
   }

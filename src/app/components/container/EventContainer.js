@@ -10,13 +10,13 @@ import { useEventCity, EventRegistrationsContext } from '../../hooks/event-hooks
 import { useModalDisplay } from '../../hooks/modal-hooks';
 import EventUI from '../presentational/events/Event';
 
-const Event = ({ event }) => {
+const Event = ({ event, cityDataList }) => {
   const { id, city, startDate, endDate, name } = event;
   const [displayModal, toggleModalDisplay] = useModalDisplay();
   const [eventIdRegistrations, dispatchEventId] = useContext(EventRegistrationsContext);
   const eventIsAlreadyRegistered =
     eventIdRegistrations && eventIdRegistrations.some(subEventId => _.isEqual(subEventId, id));
-  const [cityData] = useEventCity(city);
+  const [cityData] = useEventCity(city, cityDataList);
 
   const getSingUpModalText = (eventName, date, cityName) => {
     return `You are about to sign up for ${eventName}. 
@@ -70,6 +70,7 @@ const Event = ({ event }) => {
 };
 
 Event.propTypes = {
+  cityDataList: PropTypes.array.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     isFree: PropTypes.bool,
