@@ -8,13 +8,13 @@ import {
 } from '../../utils/customHooks/event-hooks';
 
 const FilterProviders = ({ children }) => {
-  const [eventIdRegistrations, setEventIdRegistrations] = useEventRegistration();
+  const [eventIdRegistrations, dispatchEventId] = useEventRegistration();
   const [searchValue, setSearchValue] = useState('');
   const [freeEvents, setFreeEvents] = useState([]);
   return (
     <SearchContext.Provider value={{ searchValue, setSearchValue }}>
       <FreeEventsContext.Provider value={{ freeEvents, setFreeEvents }}>
-        <EventRegistrationsContext.Provider value={[eventIdRegistrations, setEventIdRegistrations]}>
+        <EventRegistrationsContext.Provider value={[eventIdRegistrations, dispatchEventId]}>
           {children}
         </EventRegistrationsContext.Provider>
       </FreeEventsContext.Provider>

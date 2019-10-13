@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext, useReducer } from 'react';
 import * as EventsAPI from '../../api/eventsAPI';
 
 const EVENT_NAME_VALIDATION = RegExp("^[a-zA-Z0-9',:]+( [a-zA-Z0-9',:]+)*$");
@@ -8,8 +8,20 @@ export const SearchContext = createContext('');
 export const FreeEventsContext = createContext([]);
 
 export const useEventRegistration = () => {
+  const eventIdReducer = (state, action) => {
+    const { type, id } = action;
+
+    switch (type) {
+      case 'insert':
+        return [...state, id];
+      case 'remove':
+        return state.filter(eventId => eventId !== id);
+      default:
+        return [];
+    }
+  };
   const initRegistrationsId = JSON.parse(localStorage.getItem('eventIdRegistrationsStorage')) || [];
-  const [eventIdRegistrations, setEventIdRegistrations] = useState(initRegistrationsId);
+  const [eventIdRegistrations, dispatchEventId] = useReducer(eventIdReducer, initRegistrationsId);
 
   function registerEventToList() {
     localStorage.setItem('eventIdRegistrationsStorage', JSON.stringify(eventIdRegistrations));
@@ -18,8 +30,8 @@ export const useEventRegistration = () => {
   useEffect(() => {
     registerEventToList();
   }, [eventIdRegistrations]);
-
-  return [eventIdRegistrations, setEventIdRegistrations];
+  console.log('check registration');
+  return [eventIdRegistrations, dispatchEventId];
 };
 
 export const useEventsListData = () => {
@@ -64,7 +76,7 @@ export const useEventsListData = () => {
         EventsAPI.getEventsByDate(setEventsListData);
       }
     }
-
+    console.log('check search');
     return () => {
       isFetching = false;
       setOptimizedSearchLengthOnQuickTyping(3);
@@ -74,6 +86,7 @@ export const useEventsListData = () => {
   useEffect(() => {
     const hasFreeEvents = freeEvents && freeEvents.length > 0;
     if (hasFreeEvents) setEventsListData(freeEvents);
+    console.log('check freeevents');
   }, [freeEvents]);
 
   return [eventsListData, setEventsListData];
@@ -91,6 +104,8 @@ export const useEventCity = cityId => {
     if (cityId && cityCleanup) {
       EventsAPI.getCityEventById(cityId, setCityData);
     }
+    console.log('check city');
+
     return () => (cityCleanup = false);
   }, [cityId]);
 

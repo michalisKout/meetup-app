@@ -10,7 +10,7 @@ import EventUI from '../presentational/events/Event';
 const Event = ({ event }) => {
   const { id, city, startDate, endDate, name } = event;
   const [displayModal, toggleModalDisplay] = useModalDisplay();
-  const [eventIdRegistrations, setEventIdRegistrations] = useContext(EventRegistrationsContext);
+  const [eventIdRegistrations, dispatchEventId] = useContext(EventRegistrationsContext);
   const eventIsAlreadyRegistered =
     eventIdRegistrations && eventIdRegistrations.some(subEventId => _.isEqual(subEventId, id));
   const [cityData] = useEventCity(city);
@@ -38,7 +38,7 @@ const Event = ({ event }) => {
 
   const signUpHandler = () => {
     if (!eventIsAlreadyRegistered) {
-      setEventIdRegistrations([...eventIdRegistrations, id]);
+      dispatchEventId({ type: 'insert', id });
       toggleModalDisplay();
     }
   };
@@ -46,8 +46,7 @@ const Event = ({ event }) => {
   const cancelHandler = () => {
     const hasAtLeastAnEventRegistered = eventIdRegistrations && eventIdRegistrations.length > 0;
     if (hasAtLeastAnEventRegistered) {
-      const eventIdRegistrationsUpdated = eventIdRegistrations.filter(eventId => eventId !== id);
-      setEventIdRegistrations(eventIdRegistrationsUpdated);
+      dispatchEventId({ type: 'remove', id });
     }
   };
 
@@ -58,7 +57,6 @@ const Event = ({ event }) => {
       event={event}
       eventIsAlreadyRegistered={eventIsAlreadyRegistered}
       eventIdRegistrations={eventIdRegistrations}
-      setEventIdRegistrations={setEventIdRegistrations}
       signUpHandler={signUpHandler}
       cancelHandler={cancelHandler}
       displayModal={displayModal}
