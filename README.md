@@ -1,6 +1,6 @@
 # meetup-app
 
-This is an assignment for creating a meetup-like web app for trivago.
+This is an assignment for creating a meetup-like web app based on custom react hooks.
 
 # Tech description
 
@@ -38,12 +38,12 @@ This is an assignment for creating a meetup-like web app for trivago.
 
 _Assigment Notes_:
 
-- I am not confident, yet, in using typescript's features because I have not studied them enough yet. I used prop-types dependency instead to simulate type strict rules.
+- Used prop-types dependency to simulate type strict rules.
 - Clean Code principles applied across the codebase.
 - Accessibility.
 - All dependencies have been set to bugfix versions updates only to keep the consistency of workflow across all dependencies.
-- I have not used react-app boilerplate. The webpack, jest and eslint configurations are customized by me. This way the app is **lightweight**, more **flexible** on handling error cases and more **scalable**.
-- There are no unit tests for the api because we already using a mocked api with static data.
-- HashRouter used instead of Router for supporting deployment on a static site genarator like Netlify.
-- EventsDataTransformer is not tested because is an adhoc solution due to lack of aggregations in the mock API server.
-- Tests aren't complete (1 failing test on api test) due to lack of time.
+- I have not used react-app boilerplate. The webpack, jest and eslint configurations are customized by me.
+- Mocked Api is not covered by unit tests.
+- HashRouter used instead of Router for supporting deployment on a static site genarator (like Netlify).
+- EventsDataTransformer is not tested.
+- Unit Tests aren't completed (1 failing test on api test).
