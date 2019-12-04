@@ -14,7 +14,7 @@ const optimizeSearchRequestTime = config => {
 };
 
 const axiosInstance = axios.create({
-  baseURL: `${API_URL}/https://cv-app-17131.firebaseapp.com/api/v1/meetup/api/`,
+  baseURL: `${API_URL}/meetup/api/`,
   timeout: DEFAULT_TIMEOUT,
   responseType: 'json',
 });
