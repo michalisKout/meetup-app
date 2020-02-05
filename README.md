@@ -1,6 +1,6 @@
 # meetup-app
 
-This is an assignment for creating a meetup-like web app based on custom react hooks.
+This is a meetup-like web app based on custom react hooks.
 
 # Tech description
 
