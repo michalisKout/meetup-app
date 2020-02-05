@@ -17,13 +17,11 @@ This is an assignment for creating a meetup-like web app based on custom react h
      - json-server 0.15.* for creating a mock api.
      - axios 0.19.* for fecthing the mock api.
 
-> **Design Patterns**
+> **Applied Patterns**
 
     - Container/Presentational pattern is used for the react part.
     - 7-1 design pattern is used for stylesheets.
     - BEM using sass.
-
-> **Delivery Process - Trello board [Link](https://trello.com/b/Vd9rnbZM/trivago-challenge)**
 
 > **CI/CD Site Deploy - [Link](https://happy-visvesvaraya-d5d3bd.netlify.com)**
 
